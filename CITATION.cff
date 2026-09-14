@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+title: >-
+  Containment of virtual-knockout predictions in single-cell gene regulatory
+  networks: code and derived data
+message: "If you use this code or these results, please cite it as below."
+type: software
+authors:
+  # 朱子龙 (Zhu Zilong)
+  - family-names: "Zhu"
+    given-names: "Zilong"
+    orcid: "https://orcid.org/0000-0002-6955-0903"
+# TODO(publish): add the Zenodo DOI of the archived release, e.g.
+#   doi: "10.5281/zenodo.XXXXXXX"
+repository-code: "https://github.com/zhuzilong1976/zhuzilong"
+license: MIT
+date-released: "2026-09-14"
+keywords:
+  - single-cell transcriptomics
+  - gene regulatory network
+  - in-silico knockout
+  - virtual knockout
+  - scTenifoldKnk
+  - CellOracle
+  - multiple sclerosis
+  - microglia
+  - reproducibility
+abstract: >-
+  Analysis code and derived data for a methodological study showing that the
+  differentially regulated gene set produced by single-cell virtual knockout is
+  contained in the knocked-out gene's direct out-neighbours. The containment
+  rule was verified in 38 networks and approximately 20,800 knockouts spanning
+  human and mouse, five tissues and network sizes of 800-9,970 genes, including
+  20 cell-subsample replicates of the two primary networks that were used to
+  assess stability. The behaviour is specific to scTenifoldKnk and does not
+  hold for CellOracle.
+preferred-citation:
+  # TODO(publish): provisional — confirm the journal before submission/archiving.
+  type: article
+  title: >-
+    Containment, not biology: the differentially regulated gene set of
+    single-cell virtual knockout is the knockout's own out-neighbourhood
+  authors:
+    - family-names: "Zhu"
+      given-names: "Zilong"
+      orcid: "https://orcid.org/0000-0002-6955-0903"
+  journal: "PLOS Computational Biology"
+  year: 2026

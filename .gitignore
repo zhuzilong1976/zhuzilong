@@ -1,0 +1,37 @@
+# Input data (see data/README.md) and downloaded resources
+data/*
+!data/README.md
+work/
+outputs/
+logs/
+
+# Stability worker logs and other run-time logs written to the repository root
+*.log
+*.log.err
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Large intermediates that can be regenerated
+*.rds
+*.RData
+*.h5ad
+*.hdf5
+*.pkl
+*.mtx
+*.tar.gz
+*.zip

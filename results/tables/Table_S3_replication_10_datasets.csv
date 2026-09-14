@@ -1,0 +1,11 @@
+"file","dataset","ko_genes","network_genes","ko_outdegree","n_DR","n_DR_inside","pct_inside","bound_ok"
+"GSM3477499.RData","HNF4G / mouse liver","Hnf4a+Hnf4g",2591,"112+116",65,65,100,TRUE
+"GSM3716703.RData","NKX2-1 / human lung","Nkx2-1",8647,"3632",171,171,100,TRUE
+"GSM4116571.RData","DMD / human muscle","Dmd",9783,"2228",190,190,100,TRUE
+"MALAT1.RData","MALAT1 / human","Malat1",9970,"3041",167,167,100,TRUE
+"Preenterocytes.RData","AHR / mouse intestine","Ahr",8478,"127",53,53,100,TRUE
+"SRS3059998.RData","MECP2 / mouse brain (rep 1)","Mecp2",8652,"638",377,377,100,TRUE
+"SRS3059999.RData","MECP2 / mouse brain (rep 2)","Mecp2",8555,"419",322,322,100,TRUE
+"SRS3161261.RData","CFTR / human lung AT2 (rep 1)","Cftr",6585,"39",25,25,100,TRUE
+"SRS3161261_Pulmonary alveolar type II cellsAkap7.RData","AKAP7 (negative control) / human lung AT2","Akap7",6605,"1",2,2,100,TRUE
+"SRS4245406.RData","CFTR / human lung AT2 (rep 2)","Cftr",7107,"17",17,17,100,TRUE

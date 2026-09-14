@@ -1,0 +1,13 @@
+# Keep line endings stable across platforms: the Linux/macOS launchers must stay
+# LF even when the repository is checked out on Windows.
+* text=auto
+*.sh   text eol=lf
+*.R    text eol=lf
+*.r    text eol=lf
+*.mjs  text eol=lf
+*.py   text eol=lf
+*.cff  text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.png  binary
+*.pdf  binary

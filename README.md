@@ -192,3 +192,6 @@ for the associated limitation.
 See `CITATION.cff`. If you use the containment analysis or the figures, please
 cite this repository together with the scTenifoldKnk paper (Osorio *et al.*,
 *Patterns* 2022;3:100434).
+
+Repository: <https://github.com/zhuzilong1976/zhuzilong> (archived release DOI:
+`[to be added after the first Zenodo release]`)

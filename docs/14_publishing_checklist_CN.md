@@ -10,7 +10,7 @@
 | 信息 | 值 | 状态 |
 |---|---|---|
 | 作者 + ORCID | 朱子龙 / **Zhu Zilong**，ORCID `0000-0002-6955-0903` | ✅ 已写入 `CITATION.cff` |
-| GitHub 仓库地址 | `https://github.com/zhuzilong1976/zhuzilong` | ⚠️ 按"账号 zhuzilong1976 / 仓库 zhuzilong"推断填入，**若用户名不同请改这一行** |
+| GitHub 仓库地址 | `https://github.com/zhuzilong1976/zhuzilong` | ✅ 2026-09-14 已确认存在、**public**、`default_branch = main`；当前仍是空仓库，本地 5 个提交待推送 |
 | 论文题目 | `Containment, not biology: the differentially regulated gene set of single-cell virtual knockout is the knockout's own out-neighbourhood` | ✅ 已填入 `preferred-citation`（暂定） |
 | 目标期刊 | **`Briefings in Bioinformatics`**（2026-09-14 确定） | ✅ 已写入 `preferred-citation` |
 | 文章类型 | **Original Article**（2026-09-14 确定） | ✅ 已写入 cover letter 第 1 段 |

@@ -13,6 +13,8 @@
 | GitHub 仓库地址 | `https://github.com/zhuzilong1976/zhuzilong` | ⚠️ 按"账号 zhuzilong1976 / 仓库 zhuzilong"推断填入，**若用户名不同请改这一行** |
 | 论文题目 | `Containment, not biology: the differentially regulated gene set of single-cell virtual knockout is the knockout's own out-neighbourhood` | ✅ 已填入 `preferred-citation`（暂定） |
 | 目标期刊 | **`Briefings in Bioinformatics`**（2026-09-14 确定） | ✅ 已写入 `preferred-citation` |
+| 文章类型 | **Original Article**（2026-09-14 确定） | ✅ 已写入 cover letter 第 1 段 |
+| 作者单位 | **Department of Neurology, Tianjin Huanhu Hospital, Tianjin, China**（天津市环湖医院神经内科） | ✅ 已写入正文标题页与 cover letter 署名 |
 | git 提交身份 | `zhuzilong` / `zhuzilong1976@gmail.com` | ✅ 已配置为仓库级 `user.name`/`user.email` 并完成首次提交 |
 
 只剩 Zenodo DOI 一项（第 3 节）。
@@ -101,8 +103,9 @@ JCR 类别排名（Q1/Q2）请以 Clarivate JCR 官方页面为准；OUP 官网�
 
 ### 7.3 投稿前必须确认的四件事
 
-1. **文章类型**：BiB 以综述与"Problem Solving Protocol"为主，需在其投稿系统里确认本稿件
-   应按哪种类型提交（我们的稿件 = 机制刻画 + 可复现性评估 + 实践建议）；
+1. **文章类型**：已定为 **Original Article**（机制刻画 + 原始结果 + 可复现性评估 + 实践建议）。
+   投稿时请对齐投稿系统里的实际标签（可能写作 Research Article / Original Research），若不同只需改
+   cover letter 第 1 段那一处；
 2. **APC 与版权**：混合期刊，选择 CC BY 开放获取才产生费用，需确认；
 3. **字数与图表限制**：Results 目前含 Table S10/S11 与 Figure S2，正文篇幅需按新限制裁剪；
 4. **Cover letter**：需在开头一段讲清"这是对已发表工具的方法学评估，并给出可操作的报告规范建议"。

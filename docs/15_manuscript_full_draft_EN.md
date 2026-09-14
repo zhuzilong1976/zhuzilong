@@ -3,7 +3,7 @@
 > **状态（2026-09-14）**：完整初稿，所有数字均来自本仓库的结果文件（最后一节给出"主张 → 证据文件"对照表）。
 > 仍需作者补充的位置一律标 `[TO BE COMPLETED]`；无法核验的文献标 `[CITATION NEEDED]`，未凭空生成任何参考文献。
 > 引用的 9 篇文献已全部通过 CrossRef 逐条核验（标题/期刊/年份/卷页/DOI）。
-> 文章类型（Review / Problem Solving Protocol / Original Research）尚未确定，见 `docs/14_publishing_checklist_CN.md` 第 7.3 节。
+> 文章类型：**Original Article**（2026-09-14 确定）。
 
 ---
 
@@ -17,7 +17,7 @@
 
 Zhu Zilong^1,*^
 
-^1^ [TO BE COMPLETED: department, institution, city, country]
+^1^ Department of Neurology, Tianjin Huanhu Hospital, Tianjin, China
 
 \* Correspondence: zhuzilong1976@gmail.com ｜ ORCID: 0000-0002-6955-0903
 

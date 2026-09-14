@@ -9,7 +9,7 @@
 
 Dear Editors of *Briefings in Bioinformatics*,
 
-**Submission.** We submit for consideration the manuscript "Containment, not biology: the differentially regulated gene set of single-cell virtual knockout is the knockout's own out-neighbourhood", as a `[TO BE COMPLETED: article type]`. The journal reaches the readers who run single-cell gene regulatory network analyses, and the manuscript answers the question they face when interpreting a virtual-knockout gene list: what does that list contain? It is a mechanistic assessment of a tool in active use (`scTenifoldKnk`), condensed into four reporting requirements.
+**Submission.** We submit for consideration the manuscript "Containment, not biology: the differentially regulated gene set of single-cell virtual knockout is the knockout's own out-neighbourhood", as an Original Article. The journal reaches the readers who run single-cell gene regulatory network analyses, and the manuscript answers the question they face when interpreting a virtual-knockout gene list: what does that list contain? It is a mechanistic assessment of a tool in active use (`scTenifoldKnk`), with original results across 3,195 knockouts and 10 published networks, condensed into four reporting requirements.
 
 **What is new.** Benchmarking has shown that in-silico perturbation results are determined by method choice rather than biology (Wu et al., 2026), and confounder catalogues are appearing (Qiu and Zhao, 2026); the mechanism behind an individual tool had not been identified. The differentially regulated (DR) set is not a downstream readout but a structural property of the inferred network: it is contained in the knocked-out gene plus its direct out-neighbours, and its size is set by the knockout's outdegree through dilution of each target's incoming weight.
 
@@ -23,7 +23,7 @@ Sincerely,
 
 Zhu Zilong
 ORCID: 0000-0002-6955-0903
-`[TO BE COMPLETED: department, institution, city, country]`
+Department of Neurology, Tianjin Huanhu Hospital, Tianjin, China
 zhuzilong1976@gmail.com
 
 ---
@@ -44,7 +44,7 @@ Reviewers who authored `scTenifoldKnk` are deliberately **not** suggested, to ke
 
 ## Internal notes (not for submission)
 
-* Letter body: 441 words (within the 300–450 range for a standard research or protocol submission). If the journal classifies the manuscript as a short report, cut paragraph 3 to its first and third sentences (~330 words).
-* Article type is the one substantive open question; it appears once, at the end of paragraph 1. Once decided, no other edit is needed unless the type is a Review — in that case add one clause to paragraph 4 noting that the manuscript also reviews the relevant literature.
+* Letter body: 448 words (within the 300–450 range for an Original Article submission). If the journal imposes a shorter limit, cut paragraph 3 to its first and third sentences (~330 words).
+* **Article type: Original Article** (author decision, 2026-09-14). When submitting, match the exact label used in the journal's submission system; if the closest label is "Research Article" or "Original Research", change the phrase "as an Original Article" in paragraph 1 only.
 * The letter does not state or imply acceptance likelihood, acceptance rates or editorial preferences.
 * If the author list grows, replace "the author" with "all authors" in the Declarations paragraph and add a contributions sentence.

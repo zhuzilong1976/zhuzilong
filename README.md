@@ -193,5 +193,6 @@ See `CITATION.cff`. If you use the containment analysis or the figures, please
 cite this repository together with the scTenifoldKnk paper (Osorio *et al.*,
 *Patterns* 2022;3:100434).
 
-Repository: <https://github.com/zhuzilong1976/zhuzilong> (archived release DOI:
-`[to be added after the first Zenodo release]`)
+Repository: <https://github.com/zhuzilong1976/zhuzilong>
+Archived release: <https://doi.org/10.5281/zenodo.22752977> (concept DOI, always
+the latest version; v1.0.0 itself is <https://doi.org/10.5281/zenodo.22752978>)

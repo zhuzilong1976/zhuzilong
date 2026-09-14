@@ -16,8 +16,9 @@
 | 文章类型 | **Original Article**（2026-09-14 确定） | ✅ 已写入 cover letter 第 1 段 |
 | 作者单位 | **Department of Neurology, Tianjin Huanhu Hospital, Tianjin, China**（天津市环湖医院神经内科） | ✅ 已写入正文标题页与 cover letter 署名 |
 | git 提交身份 | `zhuzilong` / `zhuzilong1976@gmail.com` | ✅ 已配置为仓库级 `user.name`/`user.email` 并完成首次提交 |
+| Zenodo DOI | 版本 **`10.5281/zenodo.22752978`**（v1.0.0）／Concept **`10.5281/zenodo.22752977`** | ✅ 2026-09-14 已在 Zenodo 发布（Software、MIT、ORCID 已关联、关联到 GitHub tag v1.0.0），已回填 `CITATION.cff`/`README`/`docs/15`/cover letter |
 
-只剩 Zenodo DOI 一项（第 3 节）。
+第 0 节的各项信息**全部落实**；下一步是 OUP 投稿系统里的实际提交。
 
 ---
 
@@ -73,13 +74,15 @@ git push -u origin main
 
   然后把该 zip 作为 Zenodo 的一个版本上传（GitHub 单文件上限 100 MB，不要放进 git）。
 
-## 4. 拿到 DOI 之后回填三处
+## 4. DOI 回填（2026-09-14 已完成）
 
-1. `docs/09_methods_and_limitations_draft_EN.md` 的 `Data and code availability`：
-   把 `**[待补: DOI]**` 换成真实 DOI；
-2. `CITATION.cff` 增加 `doi: "10.5281/zenodo.XXXXXXX"`，并补上作者、`repository-code`、
-   `preferred-citation`；
-3. `README.md` 的 Citation 段可加 DOI 徽标。
+1. `CITATION.cff`：已加 `doi: "10.5281/zenodo.22752978"` 与 `version: "v1.0.0"`，并保留 concept DOI 注释；
+2. `docs/15_manuscript_full_draft_EN.md` §6.10：已写入 GitHub 地址与两个 DOI；
+3. `README.md` Citation 段：已写入仓库地址与 concept DOI 链接；
+4. `docs/16_cover_letter_BIB_EN.md` 第 4 段：已把 DOI 写进数据可用性句；
+5. 仍待你决定：`docs/09_methods_and_limitations_draft_EN.md` 的 `Data and code availability` 里还有一个
+   独立的 `**[待补: DOI]**`（属于 Methods/Limitations 草稿）。若要留档或单独使用，替换为
+   `10.5281/zenodo.22752977` 即可；我没有自动改，以免两份文档表述不一致。
 
 ## 7. 目标期刊：Briefings in Bioinformatics（2026-09-14 确定）
 

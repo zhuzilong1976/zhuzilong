@@ -207,7 +207,7 @@ All *p*-values are two-sided; multiple testing used the Benjamini–Hochberg pro
 
 ### 6.10 Data and code availability
 
-All input data are public (GEO: GSE279180; the 10 replication networks are distributed with the `cailab-tamu/scTenifoldKnk` repository). Analysis scripts, the simulation parameters, the 20 stability replicate objects, the complete distance matrices for all knockouts and the CellOracle results accompany this study: code at **https://github.com/zhuzilong1976/zhuzilong**, data archived at `[TO BE COMPLETED: Zenodo DOI]`.
+All input data are public (GEO: GSE279180; the 10 replication networks are distributed with the `cailab-tamu/scTenifoldKnk` repository). Code and derived data — analysis scripts, simulation parameters, the 20 stability replicate objects, the complete distance matrices for all knockouts and the CellOracle results — are openly available at **https://github.com/zhuzilong1976/zhuzilong** and archived at Zenodo under DOI **10.5281/zenodo.22752977** (release v1.0.0: 10.5281/zenodo.22752978).
 
 ### 6.11 Author contributions, funding, competing interests
 

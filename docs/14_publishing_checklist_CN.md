@@ -10,7 +10,7 @@
 | 信息 | 值 | 状态 |
 |---|---|---|
 | 作者 + ORCID | 朱子龙 / **Zhu Zilong**，ORCID `0000-0002-6955-0903` | ✅ 已写入 `CITATION.cff` |
-| GitHub 仓库地址 | `https://github.com/zhuzilong1976/zhuzilong` | ✅ 2026-09-14 已确认存在、**public**、`default_branch = main`；当前仍是空仓库，本地 5 个提交待推送 |
+| GitHub 仓库地址 | `https://github.com/zhuzilong1976/zhuzilong` | ✅ 2026-09-14 已推送：`main` 分支 6 个提交，远端含 `code/ docs/ env/ results/ CITATION.cff LICENSE README.md` |
 | 论文题目 | `Containment, not biology: the differentially regulated gene set of single-cell virtual knockout is the knockout's own out-neighbourhood` | ✅ 已填入 `preferred-citation`（暂定） |
 | 目标期刊 | **`Briefings in Bioinformatics`**（2026-09-14 确定） | ✅ 已写入 `preferred-citation` |
 | 文章类型 | **Original Article**（2026-09-14 确定） | ✅ 已写入 cover letter 第 1 段 |
@@ -55,6 +55,10 @@ git push -u origin main
 1. 登录 Zenodo → Settings → GitHub → 打开该仓库的开关；
 2. 回 GitHub 创建一个 Release（例如 tag `v1.0.0`），Zenodo 自动归档并分配 DOI；
 3. 在该页面可拿到 DOI 徽标与 concept DOI。
+
+> **顺序很重要**：必须先在 Zenodo 打开该仓库的开关，再去 GitHub 发 Release；
+> 反过来那次 Release 不会被归档（Zenodo 只归档开关打开之后发布的 release）。
+> 本仓库已是 public，满足自动归档条件。
 
 完整敲除距离矩阵、20 个稳定性重复对象、CellOracle 结果不随 git 走，两种处理方式：
 

@@ -12,7 +12,7 @@
 | 作者 + ORCID | 朱子龙 / **Zhu Zilong**，ORCID `0000-0002-6955-0903` | ✅ 已写入 `CITATION.cff` |
 | GitHub 仓库地址 | `https://github.com/zhuzilong1976/zhuzilong` | ⚠️ 按"账号 zhuzilong1976 / 仓库 zhuzilong"推断填入，**若用户名不同请改这一行** |
 | 论文题目 | `Containment, not biology: the differentially regulated gene set of single-cell virtual knockout is the knockout's own out-neighbourhood` | ✅ 已填入 `preferred-citation`（暂定） |
-| 目标期刊 | `PLOS Computational Biology` | ⚠️ 暂定值，投稿前确认（见第 7 节的期刊建议） |
+| 目标期刊 | **`Briefings in Bioinformatics`**（2026-09-14 确定） | ✅ 已写入 `preferred-citation` |
 | git 提交身份 | `zhuzilong` / `zhuzilong1976@gmail.com` | ✅ 已配置为仓库级 `user.name`/`user.email` 并完成首次提交 |
 
 只剩 Zenodo DOI 一项（第 3 节）。
@@ -75,20 +75,37 @@ git push -u origin main
    `preferred-citation`；
 3. `README.md` 的 Citation 段可加 DOI 徽标。
 
-## 7. 目标期刊建议（2026-09-14）
+## 7. 目标期刊：Briefings in Bioinformatics（2026-09-14 确定）
 
-按"这是对一个已发表工具的方法学刻画 + 可复现性评估 + 可操作建议"来定位，推荐顺序：
+### 7.1 已核实的指标（2026 年 6 月发布的 JCR 2025 数据）
 
-| 顺序 | 期刊 | 理由 / 代价 |
-|---|---|---|
-| 1 | **PLOS Computational Biology** | 明确欢迎方法评估与可复现性研究；有真实疾病数据实例加分；开放获取，需付 APC |
-| 2 | **Briefings in Bioinformatics** | 读者正是"要用这类工具的人"；适合"机制 + 三条实践建议"的写法；同样有 APC |
-| 3 | **NAR Genomics and Bioinformatics** / **GigaScience** | 偏工具评估与可复现性，命中率高、竞争小，适合作为保底 |
-| 4 | **Patterns**（Cell Press） | 主题最对口（scTenifoldKnk 原文即发于此），但需要按 Commentary/Perspective 改写 |
-| 5 | **Genome Biology** / **Nature Methods** | 影响力最大、风险最高；Nature Methods 只适合 Correspondence/Commentary 体量 |
+| 期刊 | IF 2025 | IF 2024 | IF 2023 | 中科院大类分区 | 大类学科 |
+|---|---:|---:|---:|---|---|
+| **Briefings in Bioinformatics** ← 目标 | **7.3** | 7.7 | 6.8 | **2区** | 生物学（小类：生化研究方法） |
+| Bioinformatics (OUP) | 5.5 | 5.4 | 4.4 | 2区 | 生物学（生化研究方法） |
+| PLOS Computational Biology | 3.7 | 3.6 | 3.8 | 2区 | 生物学（生化研究方法） |
+| Genome Biology | 9.2 | 9.4 | 10.1 | 1区 | 生物学（生物工程与应用微生物） |
+| Nature Methods | 28.3 | 32.1 | 36.1 | 1区 | 生物学（生化研究方法） |
+| NAR Genomics and Bioinformatics | 3.0 | – | – | 3区 | 生物学（遗传学） |
+| GigaScience | 5.0 | – | – | 3区 | 生物学（综合性期刊） |
+| Cell Reports Methods | 5.8 | 4.5 | – | 2区 | 生物学（生化研究方法） |
 
-投稿前请核对各自当前的 scope、文章类型与 APC（期刊政策会变）。若需要，我可以联网查这几家的
-现行 guide for authors 再确认一次。
+来源：BioxBio（历年 IF）与 LetPub 期刊库（IF、中科院分区）。两者对 BiB 的 2025 年 IF 一致（7.3）。
+JCR 类别排名（Q1/Q2）请以 Clarivate JCR 官方页面为准；OUP 官网目前被 Cloudflare 拦截，
+因此**文章类型、字数上限与 APC 需在投稿系统内确认**。
+
+### 7.2 BiB 的其他参考信息（LetPub 网友数据，供风险评估）
+
+- 自引率 6.8%；CiteScore 13.60；SJR 2.264；h-index 90
+- 审稿速度：平均约 6 个月；录用难度：较难；Gold OA：No（混合期刊，需确认是否收取版面费）
+
+### 7.3 投稿前必须确认的四件事
+
+1. **文章类型**：BiB 以综述与"Problem Solving Protocol"为主，需在其投稿系统里确认本稿件
+   应按哪种类型提交（我们的稿件 = 机制刻画 + 可复现性评估 + 实践建议）；
+2. **APC 与版权**：混合期刊，选择 CC BY 开放获取才产生费用，需确认；
+3. **字数与图表限制**：Results 目前含 Table S10/S11 与 Figure S2，正文篇幅需按新限制裁剪；
+4. **Cover letter**：需在开头一段讲清"这是对已发表工具的方法学评估，并给出可操作的报告规范建议"。
 
 ## 5. 归档前自查
 

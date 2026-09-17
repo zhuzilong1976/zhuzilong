@@ -5,7 +5,15 @@ title: >-
 message: "If you use this code or these results, please cite it as below."
 type: software
 authors:
-  # 朱子龙 (Zhu Zilong)
+  # 共同第一作者 张弢、韩璐；通讯作者 朱子龙；其他作者 王裕谭、孟瑞洁
+  - family-names: "Zhang"
+    given-names: "Tao"
+  - family-names: "Han"
+    given-names: "Lu"
+  - family-names: "Wang"
+    given-names: "Yutan"
+  - family-names: "Meng"
+    given-names: "Ruijie"
   - family-names: "Zhu"
     given-names: "Zilong"
     orcid: "https://orcid.org/0000-0002-6955-0903"

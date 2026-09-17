@@ -17,7 +17,7 @@ Dear Editors of *Briefings in Bioinformatics*,
 
 **Relevance to your readers.** Four requirements follow: report the outdegree of every knockout; do not rank genes by the number of significant targets; pair every condition comparison with a same-condition null; and state the null model used. The null comparison is decisive — the MS-versus-control rate (7.25% at *p* < 0.05) was indistinguishable from a split-half null of the same condition (5.65%; Fisher *p* = 0.221), and the null's top genes were equally plausible, so a convincing list is not evidence. Code, network objects and all knockout distance matrices are openly available (https://github.com/zhuzilong1976/zhuzilong; archived at Zenodo, DOI 10.5281/zenodo.22752977).
 
-**Declarations.** The manuscript is original, has not been published and is not under consideration elsewhere; the author has approved submission. The author declares no competing interests. `[Author to confirm]` Thank you for considering this work.
+**Declarations.** The manuscript is original, has not been published and is not under consideration elsewhere; all authors have approved submission. The authors declare no competing interests. `[Author to confirm]` Thank you for considering this work.
 
 Sincerely,
 
@@ -30,15 +30,27 @@ zhuzilong1976@gmail.com
 
 ## Optional block: suggested reviewers
 
-Insert into the submission form if the journal requests reviewers. Rationale is given for each candidate; institutional affiliations and addresses must be verified before submission (not asserted here).
+Insert into the submission form if the journal requests reviewers. Names, institutions, ORCIDs and e-mail addresses below were taken from the corresponding-author line of an open-access full text (PMC) or from the publisher's article page, and were verified on 2026-09-17; no address was guessed.
 
-| Candidate | Basis for expertise (verified from the cited literature) | Rationale |
-|---|---|---|
-| Dr. Shixiang Wu / Dr. Wei Ge | Authors of the systematic evaluation of eight in-silico perturbation methods across four datasets (2026 preprint, doi:10.64898/2026.08.11.744106) | Independent of the tool examined here; positioned to judge the benchmarking context `[affiliation/e-mail to be completed]` |
-| Dr. Ru Qiu / Dr. Max Mingqian Zhao | Authors of a confound-diagnostic toolkit for in-silico perturbation (2026 preprint, doi:10.64898/2026.08.04.732812) | Independent; works specifically on confounders of perturbation outputs `[affiliation/e-mail to be completed]` |
-| Dr. Kenji Kamimoto | First author of CellOracle (*Nature* 2023; doi:10.1038/s41586-022-05688-9) | Expert on the alternative, multi-hop design used here as the contrast; note this reviewer is an author of a compared tool `[affiliation/e-mail to be completed]` |
+| # | Candidate (verified) | Basis for expertise | Rationale |
+|---|---|---|---|
+| 1 | **Prof. T. M. Murali**, Virginia Tech, USA ｜ **murali@cs.vt.edu** ｜ ORCID 0000-0003-3688-4672 | Last author of "Benchmarking algorithms for gene regulatory network inference from single-cell transcriptomic data", *Nature Methods* 2020 (doi:10.1038/s41592-019-0690-6; ~870 citations) | Senior authority on how single-cell GRN inference should be evaluated; can judge whether the containment rule generalises beyond the tested tools |
+| 2 | **Prof. Zhao-Peng Liu**, Shandong University, China ｜ **zpliu@sdu.edu.cn** | Author of single-cell GRN-inference methods and of the corresponding evaluations in *Briefings in Bioinformatics* (e.g. GeneLink 2025, doi:10.1093/bib/bbaf201; LogicSR 2025) | Independent of both tools compared here; works directly on single-cell GRN inference and its evaluation |
+| 3 | **Prof. Samantha A. Morris**, Washington University in St. Louis, USA ｜ **s.morris@wustl.edu** | Senior and corresponding author of CellOracle (*Nature* 2023, doi:10.1038/s41586-022-05688-9) | Expert on the alternative, multi-hop perturbation design used as the contrast; **note: her laboratory developed a tool compared in this work** |
 
-Reviewers who authored `scTenifoldKnk` are deliberately **not** suggested, to keep the assessment independent; the editor may of course choose otherwise.
+Further alternates if the editor wants additional names:
+
+| # | Candidate (verified) | Basis for expertise | Rationale |
+|---|---|---|---|
+| 4 | **Prof. Jianlin Cheng**, University of Missouri, USA ｜ **chengji@missouri.edu** | Senior author of "Machine learning methods for gene regulatory network inference" (*Briefings in Bioinformatics* 2025) | Independent; machine-learning perspective on GRN inference |
+| 5 | **Dr. Wenjie Ge / Dr. Shixiang Wu**, Wuxi Taihu Hospital, China | Systematic evaluation of eight in-silico perturbation methods across four datasets (2026 preprint, doi:10.64898/2026.08.11.744106) | Closest match to the topic; e-mail is shown on the preprint's correspondence line (not machine-readable from here) |
+| 6 | **Dr. Ru Qiu**, Sun Yat-sen University, China ｜ ORCID 0009-0007-0021-7241 | Author of a confound-diagnostic toolkit for in-silico perturbation (2026 preprint, doi:10.64898/2026.08.04.732812) | Independent; works specifically on confounders of perturbation outputs |
+| 7 | **Dr. Daniel Osorio**, Texas A&M University, USA | First author of scTenifoldKnk (*Patterns* 2022, doi:10.1016/j.patter.2022.100434) | Tool developer's view; include only if the editor asks for it, and declare the relationship |
+
+E-mail addresses are listed for candidates 1–4. Candidate 5 (Ge/Wu) has no machine-readable
+address: copy it from the correspondence line on the preprint page if you prefer that pair.
+
+Reviewers who authored `scTenifoldKnk` are deliberately **not** among the three primary suggestions (candidate 5 is offered only as an alternate, for the editor's discretion), to keep the assessment independent.
 
 ---
 

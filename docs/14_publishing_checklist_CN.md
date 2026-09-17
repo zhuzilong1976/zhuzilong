@@ -16,7 +16,7 @@
 | 文章类型 | **Original Article**（2026-09-14 确定） | ✅ 已写入 cover letter 第 1 段 |
 | 作者单位 | **Department of Neurology, Tianjin Huanhu Hospital, Tianjin, China**（天津市环湖医院神经内科） | ✅ 已写入正文标题页与 cover letter 署名 |
 | git 提交身份 | `zhuzilong` / `zhuzilong1976@gmail.com` | ✅ 已配置为仓库级 `user.name`/`user.email` 并完成首次提交 |
-| Zenodo DOI | Concept **`10.5281/zenodo.22752977`**；最新版本 **`10.5281/zenodo.22814877`**（v1.1.0，2026-09-17 发布，含 R2/R4/R6/R7 全部修改）／历史版本 `10.5281/zenodo.22752978`（v1.0.0） | ✅ Software、MIT、ORCID 已关联，自动关联到对应 GitHub tag |
+| Zenodo DOI | Concept **`10.5281/zenodo.22752977`**；最新版本 **`10.5281/zenodo.22821165`**（v1.2.0，2026-09-18 发布，投稿版，含 R5 大样本复现与投稿版图件）／`10.5281/zenodo.22814877`（v1.1.0）／`10.5281/zenodo.22752978`（v1.0.0） | ✅ Software、MIT、ORCID 已关联，自动关联到对应 GitHub tag |
 
 第 0 节的各项信息**全部落实**；下一步是 OUP 投稿系统里的实际提交。
 
@@ -76,7 +76,7 @@ git push -u origin main
 
 ## 4. DOI 回填（2026-09-14 已完成）
 
-1. `CITATION.cff`：`doi: "10.5281/zenodo.22814877"`（v1.1.0）与 `version: "v1.1.0"`，并保留 concept DOI 注释；
+1. `CITATION.cff`：`doi: "10.5281/zenodo.22821165"`（v1.2.0）与 `version: "1.2.0"`，并保留 concept DOI 与前版本 DOI 注释；
 2. `docs/15_manuscript_full_draft_EN.md` §6.10：已写入 GitHub 地址与两个 DOI；
 3. `README.md` Citation 段：已写入仓库地址与 concept DOI 链接；
 4. `docs/16_cover_letter_BIB_EN.md` 第 4 段：已把 DOI 写进数据可用性句；

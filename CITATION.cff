@@ -21,8 +21,8 @@ doi: "10.5281/zenodo.22814877"
 # Concept DOI (always resolves to the latest archived release): 10.5281/zenodo.22752977
 repository-code: "https://github.com/zhuzilong1976/zhuzilong"
 license: MIT
-version: "v1.1.0"
-date-released: "2026-09-14"
+version: "1.2.0"
+date-released: "2026-09-18"
 keywords:
   - single-cell transcriptomics
   - gene regulatory network
@@ -37,9 +37,9 @@ abstract: >-
   Analysis code and derived data for a methodological study showing that the
   differentially regulated gene set produced by single-cell virtual knockout is
   contained in the knocked-out gene's direct out-neighbours. The containment
-  rule was verified in 38 networks and approximately 20,800 knockouts spanning
+  rule was verified in 44 networks and approximately 25,600 knockouts spanning
   human and mouse, five tissues and network sizes of 800-9,970 genes, including
-  20 cell-subsample replicates of the two primary networks that were used to
+  26 cell-subsample replicates of the two primary networks that were used to
   assess stability. The behaviour is specific to scTenifoldKnk and does not
   hold for CellOracle.
 preferred-citation:

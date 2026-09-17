@@ -195,4 +195,5 @@ cite this repository together with the scTenifoldKnk paper (Osorio *et al.*,
 
 Repository: <https://github.com/zhuzilong1976/zhuzilong>
 Archived release: <https://doi.org/10.5281/zenodo.22752977> (concept DOI, always
-the latest version; v1.0.0 itself is <https://doi.org/10.5281/zenodo.22752978>)
+the latest version; v1.1.0 is <https://doi.org/10.5281/zenodo.22814877> and v1.0.0
+is <https://doi.org/10.5281/zenodo.22752978>)

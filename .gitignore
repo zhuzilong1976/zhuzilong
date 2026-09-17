@@ -9,6 +9,9 @@ logs/
 *.log
 *.log.err
 
+# Scratch space used while tuning figures (probe scripts and throwaway images)
+temp/
+
 # R
 .Rhistory
 .RData

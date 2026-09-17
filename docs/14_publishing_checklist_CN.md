@@ -113,6 +113,13 @@ JCR 类别排名（Q1/Q2）请以 Clarivate JCR 官方页面为准；OUP 官网�
 1. **文章类型**：已定为 **Original Article**（机制刻画 + 原始结果 + 可复现性评估 + 实践建议）。
    投稿时请对齐投稿系统里的实际标签（可能写作 Research Article / Original Research），若不同只需改
    cover letter 第 1 段那一处；
+
+   **依据（2026-09-17 核验）**：PubMed 收录 Briefings in Bioinformatics 2024–2026 年 1,972 篇，
+   抽样 300 篇的 Publication Type 分布为 Journal Article 293、Review 51、Comparative Study 5、
+   Systematic Review 4、Letter 3 —— 该刊以原创研究（Journal Article）为绝对主体，Review 仅约 17%。
+   本文含 3,195 次敲除的原始结果与 20 次稳定性复现，按 **Original Article** 投递与刊物结构一致。
+   （OUP 的投稿说明页连续 4 次被 Cloudflare 拦截：直连、浏览器 UA、只读取页服务、存档快照，故
+   系统内的确切标签仍需登录后确认。）
 2. **APC 与版权**：混合期刊，选择 CC BY 开放获取才产生费用，需确认；
 3. **字数与图表限制**：Results 目前含 Table S10/S11 与 Figure S2，正文篇幅需按新限制裁剪；
 4. **Cover letter**：需在开头一段讲清"这是对已发表工具的方法学评估，并给出可操作的报告规范建议"。

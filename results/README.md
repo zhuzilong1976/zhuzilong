@@ -10,7 +10,19 @@
 | `Fig_tool_comparison.png` / `.pdf` | Figure 3 | Comparison with CellOracle: (A) number of genes with changed expression after knockout; (B) fraction of affected genes that are direct targets (one-hop vs multi-hop); (C) run-to-run variability. |
 | `FigS2_stability.png` / `.pdf` | Figure S2 | Stability across 10 independent cell subsamples per condition (four pre-specified checkpoints). (A) C1 containment in the 20 replicates (100% of non-degenerate knockouts); (B) C2 distribution of the pairwise Spearman rho of the max_z ranking (median 0.185); (C) C3 smallest candidate-gene FDR under the empirical null per replicate; (D) C4 number of genes at FDR < 0.05 in each replicate-paired condition comparison (6 of 10 pairs with 1–2 genes). |
 
-Vector (`.pdf`) versions are provided for typesetting.
+Each figure is written in three formats:
+
+| Format | Purpose |
+|---|---|
+| `.pdf` | submission copy: vector, Arial with embedded fonts, 170 mm wide (full page width) |
+| `.tiff` | raster backup: RGB, 600 dpi, LZW |
+| `.png` | 300 dpi preview only |
+
+All text is at least 8.1 pt at the printed size (tick labels 8.1 pt, axis titles
+9.0 pt, panel titles 10.35 pt). The settings live in
+`code/06_figures/_bib_figstyle.R`; `rebuild_all` in
+`vko-submission/_build/bib_figures/` regenerates all five figures and
+`audit_figures.py` checks size, embedded fonts, minimum text size and raster dpi.
 
 ## `tables/`
 

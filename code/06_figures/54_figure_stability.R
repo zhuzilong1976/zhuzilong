@@ -15,6 +15,7 @@
 # 29_stability_analysis.R evaluates C1 and C2 only.
 # =============================================================================
 suppressPackageStartupMessages({ library(Matrix) })
+source("code/06_figures/_bib_figstyle.R")
 
 st_dir  <- "work/stability"
 ck_dir  <- "outputs/results/vko_stability_checkpoints"
@@ -69,40 +70,39 @@ o   <- order(grepl("_MS_", tab$file), tab$rep)
 
 ## ---------------------------------------------------------------- drawing
 draw <- function() {
-  op <- graphics::par(mfrow = c(2, 2), mar = c(4.6, 4.6, 3.2, 1.0),
-                      oma = c(0, 0, 2.6, 0), family = "sans")
+  op <- bib_par(mfrow = c(2, 2), mar = c(4.8, 4.8, 3.0, 0.8), oma = c(0, 0, 0, 0))
 
   ## A  C1 containment ------------------------------------------------------
   b <- graphics::barplot(tab$containment_excl_deg0[o], names.arg = lab[o],
-                         col = col[o], border = NA, ylim = c(90, 106), las = 1,
-                         cex.names = 0.72, ylab = "Containment (%)",
-                         main = "A  C1 containment  \u2014  pass", cex.main = 1.15)
+                         col = col[o], border = NA, ylim = c(90, 106), las = 2,
+                         cex.names = BIB_CEX_AXIS, ylab = "Containment (%)",
+                         main = "A  C1 containment  \u2014  pass")
   graphics::abline(h = 99, lty = 2, col = "grey20")
-  graphics::mtext("non-degenerate knockouts", side = 3, line = 0.1, cex = 0.68, col = "grey25")
+  graphics::mtext("non-degenerate knockouts", side = 3, line = 0.1,
+                  cex = BIB_CEX_TXT, col = "grey25")
   graphics::text(mean(b), 101.2,
                  labels = sprintf("100%% in %d / %d replicates\n(dashed line: threshold 99%%)",
                                   nrow(tab), nrow(tab)),
-                 cex = 0.88, font = 2)
+                 cex = BIB_CEX_TXT, font = 2)
 
   ## B  C2 ranking correlation ---------------------------------------------
   h <- graphics::hist(rho$rho, breaks = seq(-0.5, 0.9, by = 0.1), plot = FALSE)
   graphics::plot(h, col = "grey80", border = "white", las = 1,
-                 xlim = c(-0.55, 0.9), ylim = c(0, max(h$counts) * 1.25),
+                 xlim = c(-0.55, 0.9), ylim = c(0, max(h$counts) * 1.45),
                  xlab = "", ylab = "replicate pairs",
-                 main = "B  C2 ranking correlation  \u2014  fail",
-                 cex.main = 1.15)
-  graphics::mtext("Spearman rho between replicate max_z rankings",
-                  side = 1, line = 2.6, cex = 0.8)
+                 main = "B  C2 ranking correlation  \u2014  fail")
+  graphics::mtext("Spearman rho of replicate max_z rankings",
+                  side = 1, line = 2.6, cex = BIB_CEX_TXT)
   graphics::abline(v = stats::median(rho$rho), lty = 1, lwd = 2, col = col_ctl)
   graphics::abline(v = 0.6, lty = 2, lwd = 2, col = "grey20")
-  graphics::text(0.58, max(h$counts) * 1.2, "threshold 0.6", cex = 0.68, col = "grey20",
+  graphics::text(0.58, max(h$counts) * 1.36, "threshold 0.6", cex = BIB_CEX_TXT, col = "grey20",
                  adj = c(1, 0))
-  graphics::text(stats::median(rho$rho) - 0.03, max(h$counts) * 1.2,
+  graphics::text(stats::median(rho$rho) - 0.03, max(h$counts) * 1.36,
                  sprintf("median %.3f", stats::median(rho$rho)),
-                 cex = 0.72, col = col_ctl, font = 2, adj = c(1, 0))
+                 cex = BIB_CEX_TXT, col = col_ctl, font = 2, adj = c(1, 0))
   graphics::text(0.42, max(h$counts) * 0.62,
                  sprintf("%d pairs\n(from %d replicates)", nrow(rho), nrow(tab)),
-                 cex = 0.78)
+                 cex = BIB_CEX_TXT)
 
   if (have34) {
     ## C  C3 empirical null --------------------------------------------------
@@ -111,49 +111,42 @@ draw <- function() {
                       names.arg = ifelse(grepl("_Control_", c3o$file),
                                          paste0("C", c3o$rep), paste0("M", c3o$rep)),
                       col = ifelse(grepl("_Control_", c3o$file), col_ctl, col_ms),
-                      border = NA, ylim = c(0, 1.22), las = 1, cex.names = 0.72,
+                      border = NA, ylim = c(0, 1.22), las = 2, cex.names = BIB_CEX_AXIS,
                       ylab = "smallest candidate FDR\nper replicate",
-                      main = "C  C3 panel genes vs empirical null  \u2014  pass",
-                      cex.main = 1.15)
+                      main = "C  C3 vs empirical null  \u2014  pass")
     graphics::abline(h = 0.05, lty = 2, col = "grey20")
     graphics::text(mean(seq_along(c3o$rep) * 1.2 - 1.2), 1.04,
-                   sprintf("no panel gene below FDR 0.05 in %d / %d replicates\n(dashed line: threshold 0.05)",
-                           nrow(c3), nrow(c3)), cex = 0.85, font = 2)
+                   sprintf("no panel gene below FDR 0.05\n(%d / %d replicates; dashed line: 0.05)",
+                           nrow(c3), nrow(c3)), cex = BIB_CEX_TXT, font = 2)
 
     ## D  C4 paired comparison ----------------------------------------------
     graphics::barplot(c4$n_fdr05, names.arg = paste0("pair ", c4$replicate),
-                      col = "grey45", border = NA, ylim = c(0, 3.6), las = 1,
-                      cex.names = 0.72, ylab = "genes at FDR < 0.05",
+                      col = "grey45", border = NA, ylim = c(0, 4.2), las = 2,
+                      cex.names = BIB_CEX_AXIS, ylab = "genes at FDR < 0.05",
                       yaxt = "n",
-                      main = "D  C4 paired condition comparison  \u2014  fail",
-                      cex.main = 1.15)
+                      main = "D  C4 paired comparison  \u2014  fail")
     graphics::axis(2, at = 0:3, las = 1)
     graphics::abline(h = 0, lty = 1, col = "grey20")
     for (i in seq_len(nrow(c4))) {
       graphics::text(i * 1.2 - 0.6, c4$n_fdr05[i] + 0.09,
                      ifelse(c4$n_fdr05[i] > 0, c4$top_gene[i], ""),
-                     cex = 0.6, srt = 45)
+                     cex = BIB_CEX_TXT, srt = 45)
     }
-    graphics::text(nrow(c4) * 1.2 * 0.5, 3.3,
+    graphics::text(nrow(c4) * 1.2 * 0.5, 3.9,
                    sprintf("primary analysis: 0 genes\nreplicates: %d / %d pairs with >=1",
-                           sum(c4$n_fdr05 > 0), nrow(c4)), cex = 0.85, font = 2)
+                           sum(c4$n_fdr05 > 0), nrow(c4)), cex = BIB_CEX_TXT, font = 2)
   } else {
     graphics::plot.new()
     graphics::text(0.5, 0.5, "checkpoint_C3/C4 CSV not found\nsee code/07_supplementary/67_stability_checkpoints_C3C4.R",
                    cex = 0.9)
   }
 
-  graphics::mtext(paste0("Stability of virtual-knockout outputs across independent cell subsamples ",
-                         "(10 replicates per condition, 800 genes, 10 networks x 500 cells each)"),
-                  side = 3, outer = TRUE, cex = 0.9, font = 2, family = "sans")
   graphics::par(op)
 }
 
-png(file.path(fig_dir, "FigS2_stability.png"), width = 2400, height = 1700, res = 190)
-draw(); dev.off()
-pdf(file.path(fig_dir, "FigS2_stability.pdf"), width = 12.6, height = 8.9)
-draw(); dev.off()
-cat("\nSaved results/figures/FigS2_stability.{png,pdf}\n")
+bib_render(draw, file.path(fig_dir, "FigS2_stability"),
+           width_mm = BIB_FULL_MM, height_mm = 140)
+cat("\nSaved results/figures/FigS2_stability.{pdf,tiff,png}\n")
 cat(sprintf("C1: %s | C2 median rho %.3f | C3: %d sig in %d replicates | C4: %d/%d pairs with >=1 gene\n",
             ifelse(all(tab$containment_excl_deg0 >= 99), "pass", "fail"),
             stats::median(rho$rho),

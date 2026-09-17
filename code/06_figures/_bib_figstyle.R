@@ -149,104 +149,57 @@ usr_text_h <- function(n_lines = 1, cex = BIB_CEX_TXT) {
   n_lines * graphics::strheight("X", units = "user")
 }
 
-## Screen-space (normalised device coordinate) extent of a label drawn at (x, y)
-## with the given justification. Used to test two labels for overlap without
-## needing the bounding-box API that base graphics does not expose.
-## Place a label next to each point, choosing the first compass direction that
-## does not overlap an already-placed label or a data point. Cardinal
-## directions are tried before diagonals, so labels stay axis-aligned wherever
-## the figure allows it.
+## Place each label at an explicit compass direction from its point.
 ##
-## This exists because fixed direction rules (below, above, left, repeat) break
-## when several points sit within a character of each other on both axes, which
-## is exactly the case for the Dmd / Malat1 / Nkx2-1 cluster in Figure 2A.
+## A direction-searching version of this could not separate the Dmd / Malat1 /
+## Nkx2-1 cluster in Figure 2A: those three sit within one character of each
+## other on both axes, so every direction that kept one label inside the panel
+## put it on top of another. For a figure with a handful of fixed points, naming
+## the direction per point is simpler and exactly verifiable.
 ##
-## Geometry is done in normalised device coordinates. The conversion avoids the
-## two traps in base graphics: strwidth(units = "user") is an *x* length (so it
-## is wrong on a log or differently scaled y axis), and par("din") is in inches
-## while strwidth() is in user units. Both widths are therefore expressed as
-## multiples of one character advance, and a single measured y advance converts
-## to inches, which gives the x scale as well.
-bib_point_labels <- function(x, y, labels, cex = BIB_CEX_TXT,
-                             offset_in = 0.03, avoid_points = TRUE,
-                             point_cex = 1.5) {
-  stopifnot(length(x) == length(y), length(x) == length(labels))
+## `labels` is used only to measure each label's width; `dir_x` and `dir_y` give
+## the direction (-1, 0 or 1) per point. Returns the centres for text() at
+## adj = c(0.5, 0.5).
+bib_point_labels <- function(x, y, labels, dir_x, dir_y, cex = BIB_CEX_TXT,
+                             offset_in = 0.035) {
+  n <- length(x)
+  stopifnot(length(y) == n, length(labels) == n,
+            length(dir_x) == n, length(dir_y) == n)
   lim <- graphics::par("usr")
   din <- graphics::par("din")
   old <- graphics::par(cex = cex)
   on.exit(graphics::par(old), add = TRUE)
 
   ## On a log axis par("usr") and the placement coordinates are log10 values
-  ## while x and y are raw data, so everything is done in the par("usr") space
-  ## and converted back once at the end.
-  log_x <- graphics::par("xlog")
-  log_y <- graphics::par("ylog")
-  ux <- if (log_x) log10(x) else x
-  uy <- if (log_y) log10(y) else y
+  ## while x and y are raw data, so work in the par("usr") space throughout.
+  ux <- if (graphics::par("xlog")) log10(x) else x
+  uy <- if (graphics::par("ylog")) log10(y) else y
 
-  ## Label size in inches. Reading it off the device is the only reliable way:
-  ## strwidth(units = "user") is an x-axis length and is wrong on a log axis,
-  ## and par("din") is in inches while strwidth() is not.
-  char_h_in <- graphics::par("cin")[2]            # one character, inches
-  text_w_in <- vapply(labels, function(s) {
-    graphics::strwidth(s) / graphics::strwidth("X") * char_h_in
-  }, numeric(1))
+  ## Width in inches. strwidth(units = "user") is an x-axis length and is wrong
+  ## on a log axis, so express the width in character advances and convert with
+  ## the character height, which is a physical length on both axes.
+  char_h_in <- graphics::par("cin")[2]
+  text_w_in <- graphics::strwidth(labels) / graphics::strwidth("X") * char_h_in
   plot_w_in <- din[1] - sum(graphics::par("mai")[c(2, 4)])
   plot_h_in <- din[2] - sum(graphics::par("mai")[c(1, 3)])
 
-  per_in_x <- (lim[2] - lim[1]) / plot_w_in       # usr units per inch
-  per_in_y <- (lim[4] - lim[3]) / plot_h_in
-  w_u <- text_w_in * per_in_x                     # label width, usr units
-  h_u <- char_h_in * per_in_y
-  pt_u <- graphics::par("cin")[1] * point_cex / 2 * per_in_x
-  pt_v <- graphics::par("cin")[1] * point_cex / 2 * per_in_y
-  off <- offset_in * per_in_x
+  ## Physical sizes converted to par("usr") units. The panel is not square, so
+  ## the same number of inches is a different number of user units on x and y.
+  line_h <- char_h_in * (lim[4] - lim[3]) / plot_h_in   # one text line
+  box_w <- text_w_in * (lim[2] - lim[1]) / plot_w_in    # this label's width
+  off_x <- offset_in * (lim[2] - lim[1]) / plot_w_in
+  off_y <- offset_in * (lim[4] - lim[3]) / plot_h_in
 
-  dirs <- list(c(0, 1), c(0, -1), c(1, 0), c(-1, 0),
-               c(1, 1), c(-1, 1), c(1, -1), c(-1, -1))
-  boxes <- vector("list", length(x))
-  out_x <- ux; out_y <- uy
+  ## Directions that are 0 on both axes would put the label on its own point.
+  zero <- dir_x == 0 & dir_y == 0
+  if (any(zero)) dir_y[zero] <- 1
 
-  overlaps <- function(b) {
-    for (j in seq_along(boxes)) {
-      q <- boxes[[j]]
-      if (!is.null(q) && b[1] < q[2] && b[2] > q[1] &&
-          b[3] < q[4] && b[4] > q[3]) return(TRUE)
-    }
-    if (avoid_points) {
-      for (k in seq_along(ux)) {
-        if (b[1] < ux[k] + pt_u && b[2] > ux[k] - pt_u &&
-            b[3] < uy[k] + pt_v && b[4] > uy[k] - pt_v) return(TRUE)
-      }
-    }
-    FALSE
-  }
+  ## Shift by half the label's own extent plus the gap, in the named direction.
+  shift_x <- dir_x * (box_w / 2 + off_x)
+  shift_y <- dir_y * (line_h / 2 + off_y)
 
-  for (i in seq_along(ux)) {
-    w <- w_u[i] / 2
-    h <- h_u / 2
-    placed <- NULL
-    for (d in dirs) {
-      cx <- ux[i] + d[1] * (w + off)
-      cy <- uy[i] + d[2] * (h + off)
-      b <- c(cx - w, cx + w, cy - h, cy + h)
-      if (b[1] < lim[1] || b[2] > lim[2] ||
-          b[3] < lim[3] || b[4] > lim[4]) next
-      if (overlaps(b)) next
-      placed <- list(cx = cx, cy = cy, box = b)
-      break
-    }
-    if (is.null(placed)) {
-      cx <- ux[i]
-      cy <- uy[i] + h + off
-      placed <- list(cx = cx, cy = cy, box = c(cx - w, cx + w, cy - h, cy + h))
-    }
-    boxes[[i]] <- placed$box
-    out_x[i] <- placed$cx
-    out_y[i] <- placed$cy
-  }
-  list(x = if (log_x) 10^out_x else out_x,
-       y = if (log_y) 10^out_y else out_y)
+  list(x = if (graphics::par("xlog")) 10^(ux + shift_x) else ux + shift_x,
+       y = if (graphics::par("ylog")) 10^(uy + shift_y) else uy + shift_y)
 }
 
 ## A point given as a fraction of the current plot region, so an annotation

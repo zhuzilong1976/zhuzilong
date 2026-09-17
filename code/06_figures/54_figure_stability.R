@@ -76,7 +76,7 @@ draw <- function() {
   b <- graphics::barplot(tab$containment_excl_deg0[o], names.arg = lab[o],
                          col = col[o], border = NA, ylim = c(90, 106), las = 2,
                          cex.names = BIB_CEX_AXIS, ylab = "Containment (%)",
-                         main = "A  C1 containment  \u2014  pass")
+                         main = "A  C1 containment: pass")
   graphics::abline(h = 99, lty = 2, col = "grey20")
   graphics::mtext("non-degenerate knockouts", side = 3, line = 0.1,
                   cex = BIB_CEX_TXT, col = "grey25")
@@ -90,19 +90,22 @@ draw <- function() {
   graphics::plot(h, col = "grey80", border = "white", las = 1,
                  xlim = c(-0.55, 0.9), ylim = c(0, max(h$counts) * 1.45),
                  xlab = "", ylab = "replicate pairs",
-                 main = "B  C2 ranking correlation  \u2014  fail")
+                 main = "B  C2 ranking correlation: fail")
   graphics::mtext("Spearman rho of replicate max_z rankings",
                   side = 1, line = 2.6, cex = BIB_CEX_TXT)
   graphics::abline(v = stats::median(rho$rho), lty = 1, lwd = 2, col = col_ctl)
   graphics::abline(v = 0.6, lty = 2, lwd = 2, col = "grey20")
-  graphics::text(0.58, max(h$counts) * 1.36, "threshold 0.6", cex = BIB_CEX_TXT, col = "grey20",
-                 adj = c(1, 0))
-  graphics::text(stats::median(rho$rho) - 0.03, max(h$counts) * 1.36,
+  ## adj = c(1, 0) anchors the text ending at x = 0.52, clear of the dashed
+  ## line at 0.6; at 0.58 the label ran into the panel edge.
+  graphics::text(0.52, max(h$counts) * 1.34, "threshold 0.6", cex = BIB_CEX_TXT,
+                 col = "grey20", adj = c(1, 0))
+  graphics::text(stats::median(rho$rho) + 0.04, max(h$counts) * 1.12,
                  sprintf("median %.3f", stats::median(rho$rho)),
-                 cex = BIB_CEX_TXT, col = col_ctl, font = 2, adj = c(1, 0))
-  graphics::text(0.42, max(h$counts) * 0.62,
+                 cex = BIB_CEX_TXT, col = col_ctl, font = 2, adj = c(0, 0))
+  ## Left of the histogram: centered at 0.42 the text sat on the bars.
+  graphics::text(-0.5, max(h$counts) * 0.75,
                  sprintf("%d pairs\n(from %d replicates)", nrow(rho), nrow(tab)),
-                 cex = BIB_CEX_TXT)
+                 cex = BIB_CEX_TXT, adj = c(0, 0))
 
   if (have34) {
     ## C  C3 empirical null --------------------------------------------------
@@ -112,8 +115,8 @@ draw <- function() {
                                          paste0("C", c3o$rep), paste0("M", c3o$rep)),
                       col = ifelse(grepl("_Control_", c3o$file), col_ctl, col_ms),
                       border = NA, ylim = c(0, 1.22), las = 2, cex.names = BIB_CEX_AXIS,
-                      ylab = "smallest candidate FDR\nper replicate",
-                      main = "C  C3 vs empirical null  \u2014  pass")
+                      ylab = "smallest candidate FDR",
+                      main = "C  C3 vs empirical null: pass")
     graphics::abline(h = 0.05, lty = 2, col = "grey20")
     graphics::text(mean(seq_along(c3o$rep) * 1.2 - 1.2), 1.04,
                    sprintf("no panel gene below FDR 0.05\n(%d / %d replicates; dashed line: 0.05)",
@@ -124,16 +127,18 @@ draw <- function() {
                       col = "grey45", border = NA, ylim = c(0, 4.2), las = 2,
                       cex.names = BIB_CEX_AXIS, ylab = "genes at FDR < 0.05",
                       yaxt = "n",
-                      main = "D  C4 paired comparison  \u2014  fail")
+                      main = "D  C4 paired comparison: fail")
     graphics::axis(2, at = 0:3, las = 1)
     graphics::abline(h = 0, lty = 1, col = "grey20")
+    ## Horizontal, alternating two heights: at 45 degrees the labels of the
+    ## adjacent pairs (CD74/ADGRG3, CD74/ADGRG3) overlapped each other.
     for (i in seq_len(nrow(c4))) {
-      graphics::text(i * 1.2 - 0.6, c4$n_fdr05[i] + 0.09,
+      graphics::text(i * 1.2 - 0.6, c4$n_fdr05[i] + 0.1 + (i %% 2) * 0.32,
                      ifelse(c4$n_fdr05[i] > 0, c4$top_gene[i], ""),
-                     cex = BIB_CEX_TXT, srt = 45)
+                     cex = BIB_CEX_TXT)
     }
     graphics::text(nrow(c4) * 1.2 * 0.5, 3.9,
-                   sprintf("primary analysis: 0 genes\nreplicates: %d / %d pairs with >=1",
+                   sprintf("primary analysis: 0 genes\nreplicates: %d / %d pairs with ≥1",
                            sum(c4$n_fdr05 > 0), nrow(c4)), cex = BIB_CEX_TXT, font = 2)
   } else {
     graphics::plot.new()

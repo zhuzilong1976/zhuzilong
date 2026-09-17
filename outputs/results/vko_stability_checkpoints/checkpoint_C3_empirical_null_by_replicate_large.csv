@@ -1,0 +1,7 @@
+"file","tag","rep","n_genes","n_null","n_panel_tested","n_candidate_fdr05","n_negative_fdr05","min_padj_candidate","top_candidate"
+"MSvC_Control_rep01.rds","MSvC_Control",1,797,773,20,0,0,0.186,"P2RY12"
+"MSvC_Control_rep02.rds","MSvC_Control",2,798,774,20,0,0,0.465,"BTK"
+"MSvC_Control_rep03.rds","MSvC_Control",3,797,773,20,0,0,0.655,"CD33"
+"MSvC_MS_rep01.rds","MSvC_MS",1,800,776,20,0,0,0.093,"CD33"
+"MSvC_MS_rep02.rds","MSvC_MS",2,800,776,20,0,0,0.247,"PICALM"
+"MSvC_MS_rep03.rds","MSvC_MS",3,800,776,20,0,0,0.402,"C3"

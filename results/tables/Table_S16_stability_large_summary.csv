@@ -1,0 +1,5 @@
+"checkpoint","value","pass"
+"C1 containment >= 99% per replicate","min 100.00% (over 6 replicates)",TRUE
+"C2 median pairwise rho >= 0.6","median 0.309 (range 0.112-0.462, 6 pairs)",FALSE
+"C3 n panel genes with FDR<0.05 == 0 in every replicate","see Table_S4/S5 per-replicate null analysis",NA
+"C4 no gene with FDR<0.05 in the condition comparison","see per-replicate condition comparison",NA

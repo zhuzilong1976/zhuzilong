@@ -35,7 +35,7 @@ Insert into the submission form if the journal requests reviewers. Names, instit
 | # | Candidate (verified) | Basis for expertise | Rationale |
 |---|---|---|---|
 | 1 | **Prof. T. M. Murali**, Virginia Tech, USA ｜ **murali@cs.vt.edu** ｜ ORCID 0000-0003-3688-4672 | Last author of "Benchmarking algorithms for gene regulatory network inference from single-cell transcriptomic data", *Nature Methods* 2020 (doi:10.1038/s41592-019-0690-6; ~870 citations) | Senior authority on how single-cell GRN inference should be evaluated; can judge whether the containment rule generalises beyond the tested tools |
-| 2 | **Prof. Zhao-Peng Liu**, Shandong University, China ｜ **zpliu@sdu.edu.cn** | Author of single-cell GRN-inference methods and of the corresponding evaluations in *Briefings in Bioinformatics* (e.g. GeneLink 2025, doi:10.1093/bib/bbaf201; LogicSR 2025) | Independent of both tools compared here; works directly on single-cell GRN inference and its evaluation |
+| 2 | **Prof. Zhao-Peng Liu**, Shandong University, China ｜ **zpliu@sdu.edu.cn** | Author of single-cell GRN-inference methods and of the corresponding evaluations in *Briefings in Bioinformatics* (GeneLink 2025, doi:10.1093/bib/bbaf359; LogicSR 2025, doi:10.1093/bib/bbaf621) | Independent of both tools compared here; works directly on single-cell GRN inference and its evaluation |
 | 3 | **Prof. Samantha A. Morris**, Washington University in St. Louis, USA ｜ **s.morris@wustl.edu** | Senior and corresponding author of CellOracle (*Nature* 2023, doi:10.1038/s41586-022-05688-9) | Expert on the alternative, multi-hop perturbation design used as the contrast; **note: her laboratory developed a tool compared in this work** |
 
 Further alternates if the editor wants additional names:

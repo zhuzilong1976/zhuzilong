@@ -2,7 +2,7 @@
 
 > Paste the block below into the "Author biography" / "Biographical sketch" field of the
 > submission system. Briefings in Bioinformatics does not print author biographies in an
-> Original Article, so this file is not uploaded as part of the manuscript.
+> Problem Solving Protocol, so this file is not uploaded as part of the manuscript.
 > Order follows the byline. Each entry is about 30 words.
 
 ## Author biographies

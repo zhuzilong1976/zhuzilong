@@ -17,8 +17,8 @@ authors:
   - family-names: "Zhu"
     given-names: "Zilong"
     orcid: "https://orcid.org/0000-0002-6955-0903"
-doi: "10.5281/zenodo.22821165"
-# Previous version DOI (v1.1.0): 10.5281/zenodo.22814877
+doi: "10.5281/zenodo.22833250"
+# Previous version DOIs: v1.2.0 = 10.5281/zenodo.22821165, v1.1.0 = 10.5281/zenodo.22814877
 # Concept DOI (always resolves to the latest archived release): 10.5281/zenodo.22752977
 repository-code: "https://github.com/zhuzilong1976/zhuzilong"
 license: MIT

@@ -139,15 +139,24 @@ draw <- function() {
                             main = "D  C4 paired comparison: fail")
     graphics::axis(2, at = 0:3, las = 1)
     graphics::abline(h = 0, lty = 1, col = "grey20")
-    ## Each gene name sits exactly on the midpoint barplot() returns. The loop this
+    ## Each gene name sits exactly on the midpoint barplot() returns: the loop this
     ## replaces used i * 1.2 - 0.6, which is 0.1 bar slots to the left of the true
-    ## midpoint, so every label sat between two bars. The labels also step up by
-    ## 0.30 each, because two names of five or six characters cannot share a row
-    ## that is only about 6 mm wide; xpd = NA keeps the last one visible.
-    lab_rows <- which(c4$n_fdr05 > 0)
-    for (k in seq_along(lab_rows)) {
-      i <- lab_rows[k]
-      graphics::text(b4[i], c4$n_fdr05[i] + 0.15 + (k - 1) * 0.30, c4$top_gene[i],
+    ## midpoint, so every label sat between two bars.
+    ##
+    ## Every label is the same distance above its bar, 0.18 units. A name is about
+    ## 9 mm wide and a bar slot only 6.5 mm, so labels on adjacent bars would touch;
+    ## the second of such a pair is therefore raised by one row (0.42 units, which
+    ## is more than the 2.1 mm height of the text). Only pairs 6/7 and 9/10 in this
+    ## data set are adjacent, so the raised row is used twice and everything else
+    ## shares one row. xpd = NA keeps the last name visible at the right edge.
+    lab_at <- which(c4$n_fdr05 > 0)
+    lab_row <- integer(length(lab_at))
+    for (k in seq_along(lab_at)) {
+      lab_row[k] <- if (k > 1 && lab_at[k] - lab_at[k - 1] == 1) 1L - lab_row[k - 1] else 0L
+    }
+    for (k in seq_along(lab_at)) {
+      i <- lab_at[k]
+      graphics::text(b4[i], c4$n_fdr05[i] + 0.18 + lab_row[k] * 0.42, c4$top_gene[i],
                      cex = BIB_CEX_TXT, xpd = NA)
     }
     ## \u2265 rather than the literal character: this machine's R reads the script

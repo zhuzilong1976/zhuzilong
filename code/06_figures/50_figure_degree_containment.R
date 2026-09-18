@@ -72,7 +72,11 @@ draw <- function() {
   ## The x-axis title is one short string shared by panels A and B, so the
   ## column gap can stay small. A longer title would run past the left edge of
   ## the device, because it is centred on the panel and panel A is flush left.
-  op <- bib_par(mfrow = c(1, 3), mar = c(4.6, 4.4, 3.0, 0.8), oma = c(0, 0, 0, 0))
+  ## Bottom margin 6.0 and top 3.4: panel C carries two-line rotated network
+  ## labels under the axis and a row of rotated value labels above the bars, and
+  ## at mar = 4.6 / 3.0 both ran past the device edge and were cut (measured as
+  ## ink on the last raster row of the exported PNG).
+  op <- bib_par(mfrow = c(1, 3), mar = c(6.0, 4.4, 3.4, 0.8), oma = c(0, 0, 0, 0))
   xlab_ko <- "Outdegree of KO gene"
 
   ## Panel A
@@ -136,5 +140,5 @@ draw <- function() {
 }
 
 bib_render(draw, file.path(fig_dir, "Fig_degree_artifact"),
-           width_mm = BIB_FULL_MM, height_mm = 92)
+           width_mm = BIB_FULL_MM, height_mm = 100)
 cat("\nSaved results/figures/Fig_degree_artifact.{pdf,tiff,png}\n")

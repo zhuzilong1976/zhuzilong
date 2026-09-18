@@ -15,7 +15,10 @@ rep$od_total <- rep$od1 + ifelse(is.na(rep$od2), 0, rep$od2)
 draw <- function() {
   ## Right margin 1.6, not 1.0: panel A's y-axis title is a physical width, and
   ## at 1.0 the last character landed outside the device and was cut off.
-  op <- bib_par(mfrow = c(1, 2), mar = c(5.4, 5.0, 3.0, 1.6), oma = c(0, 0, 0, 0))
+  ## mar bottom 6.6: panel B's two-line rotated dataset labels ran past the
+  ## bottom edge at 5.4 (ink on the last raster row). mar right 2.0 also keeps
+  ## panel B's long x-axis title inside the device.
+  op <- bib_par(mfrow = c(1, 2), mar = c(6.6, 5.0, 3.0, 2.0), oma = c(0, 0, 0, 0))
 
   ## The y axis runs to 1,200 although the highest point is 377: the extra
   ## decade is headroom for labels. Nkx2-1, Dmd and Malat1 lie within 0.06 of a
@@ -35,8 +38,13 @@ draw <- function() {
   ## Malat1, Ahr, Mecp2, Mecp2, Cftr, Akap7, Cftr. Columns are the label's
   ## x and y in data units; both are given explicitly because no rule fitted
   ## them, as the note on the y range above explains.
-  lab_x <- c(  60,  3600, 2000, 2900,  60,   700,  100,  38,    2.2,  6)
-  lab_y <- c(  27,   700,  500,  340,  30,   640,  470,  17,    3.2, 11)
+  ## Labels 1, 5, 8 and 10 are the left cluster (outdegree 17-228) and sit inside
+  ## a two-decade box, where the previous positions put Hnf4a+Hnf4g, Ahr and Cftr
+  ## on top of one another. The five left labels are now spread over distinct
+  ## rows: each pair differs by at least 0.28 log units on y, which is wider than
+  ## one line of text at 8.1 pt.
+  lab_x <- c( 430,  3600, 2000, 2900,  150,  700,  100,   75,    5.5,  5)
+  lab_y <- c( 110,   700,  500,  340,   17,  640,  470,    9,    2.2, 45)
   graphics::text(lab_x, lab_y, labels = rep$ko_genes, cex = BIB_CEX_TXT)
   ## Above the bound line at the far left: the line is still below y = 90 where
   ## the panel starts, and no point is plotted in that corner.
@@ -57,7 +65,10 @@ draw <- function() {
   labs <- c(sprintf("%s\n(n=%d)", bib_short(names(net_tab)), n_net),
             sprintf("%s\n(n=%s)", rep$ko_genes, gsub("[+]", "+\n", rep$network_genes)))
   pct <- c(100 * as.numeric(net_tab), rep$pct_inside)
-  grp <- c(rep("this study", nrow(our)), rep("published", nrow(rep)))
+  ## grp has to have one entry per bar. Spelled with nrow(our) it had 3,195
+  ## entries, so the first 14 were all "this study" and every bar came out grey,
+  ## including the 10 published datasets that are meant to be red.
+  grp <- c(rep("this study", length(net_tab)), rep("published", nrow(rep)))
   cols <- ifelse(grp == "this study", "#7f8c8d", "#e74c3c")
   graphics::barplot(pct, names.arg = labs, col = cols, border = NA,
                     ylim = c(0, 112), las = 2, cex.names = BIB_CEX_AXIS,
@@ -70,5 +81,5 @@ draw <- function() {
 }
 
 bib_render(draw, file.path(fig_dir, "Fig_replication"),
-           width_mm = BIB_FULL_MM, height_mm = 100)
+           width_mm = BIB_FULL_MM, height_mm = 110)
 cat("Saved results/figures/Fig_replication.{pdf,tiff,png}\n")

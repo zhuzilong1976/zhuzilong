@@ -70,7 +70,10 @@ o   <- order(grepl("_MS_", tab$file), tab$rep)
 
 ## ---------------------------------------------------------------- drawing
 draw <- function() {
-  op <- bib_par(mfrow = c(2, 2), mar = c(4.8, 4.8, 3.0, 0.8), oma = c(0, 0, 0, 0))
+  ## mar left 6.2: panels C and D carry a two-line y-axis title ("smallest
+  ## candidate FDR / per replicate"), which ran past the left edge of the device
+  ## at 4.8. mar bottom 5.4 gives the rotated replicate labels room as well.
+  op <- bib_par(mfrow = c(2, 2), mar = c(5.4, 6.2, 3.0, 0.8), oma = c(0, 0, 0, 0))
 
   ## A  C1 containment ------------------------------------------------------
   b <- graphics::barplot(tab$containment_excl_deg0[o], names.arg = lab[o],
@@ -150,7 +153,7 @@ draw <- function() {
 }
 
 bib_render(draw, file.path(fig_dir, "FigS2_stability"),
-           width_mm = BIB_FULL_MM, height_mm = 140)
+           width_mm = BIB_FULL_MM, height_mm = 146)
 cat("\nSaved results/figures/FigS2_stability.{pdf,tiff,png}\n")
 cat(sprintf("C1: %s | C2 median rho %.3f | C3: %d sig in %d replicates | C4: %d/%d pairs with >=1 gene\n",
             ifelse(all(tab$containment_excl_deg0 >= 99), "pass", "fail"),

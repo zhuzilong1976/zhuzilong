@@ -52,10 +52,11 @@ draw <- function() {
                          ylab = "Containment compliance (%)",
                          main = "A  Containment holds")
   graphics::abline(h = 100, lty = 2, col = "grey35")
-  ## Rotated, like panels B and C: four horizontal labels at 8.1 pt are wider
-  ## than the panel, so side-by-side they touch.
+  ## Horizontal: at 170 mm page width each of the three panels is about 55 mm
+  ## wide, so four labels of five characters sit comfortably side by side. The
+  ## rotated version this replaces crowded the panel title.
   graphics::text(b, summ$compliance + 3.5, sprintf("%.1f%%", summ$compliance),
-                 cex = BIB_CEX_TXT, srt = 90, adj = c(0, 0.5))
+                 cex = BIB_CEX_TXT, adj = c(0.5, 0))
 
   ## B: network density & median outdegree
   graphics::barplot(summ$density, names.arg = ax_lab, col = summ$col, border = NA,
@@ -64,7 +65,7 @@ draw <- function() {
                     main = "B  Density changes")
   graphics::text(b, summ$density + 4,
                  sprintf("%.1f%%\n(od=%d)", summ$density, round(summ$median_od)),
-                 cex = BIB_CEX_TXT, srt = 90)
+                 cex = BIB_CEX_TXT, adj = c(0.5, 0))
 
   ## C: number of outdegree-0 genes = the violations
   graphics::barplot(summ$n_deg0, names.arg = ax_lab, col = summ$col, border = NA,
@@ -72,7 +73,7 @@ draw <- function() {
                     ylab = "Genes with outdegree 0",
                     main = "C  Outdegree-0 genes")
   graphics::text(b, summ$n_deg0 + max(summ$n_deg0) * 0.06,
-                 labels = summ$n_deg0, cex = BIB_CEX_TXT, srt = 90)
+                 labels = summ$n_deg0, cex = BIB_CEX_TXT, adj = c(0.5, 0))
 
   graphics::mtext("* default setting", side = 1, outer = TRUE, line = 0.4,
                   cex = BIB_CEX_TXT, col = "grey25")

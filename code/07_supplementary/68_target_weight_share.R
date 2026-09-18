@@ -119,7 +119,9 @@ low <- ro[ro$network == "Control" & ro$knockout %in% per_ko$knockout[per_ko$n_si
 share_rng <- range(low$share)
 
 draw <- function() {
-  op <- bib_par(mfrow = c(1, 2), mar = c(4.6, 4.8, 3.0, 0.8))
+  ## mar right 2.0: panel B's x-axis title is longer than the panel itself, so at
+  ## 0.8 the last characters were cut by the right edge of the device.
+  op <- bib_par(mfrow = c(1, 2), mar = c(4.6, 4.8, 3.4, 2.4))
 
   cols <- ifelse(per_ko$network == "Control", BIB_TINT$blue, BIB_TINT$red)
   graphics::plot(per_ko$outdegree, 100 * per_ko$n_significant / per_ko$n_targets,
@@ -136,12 +138,14 @@ draw <- function() {
   h <- graphics::hist(low$share, breaks = 30, plot = FALSE)
   graphics::plot(h, col = BIB_TINT$blue, border = "white", las = 1,
                  xlim = c(0, max(0.07, max(low$share))),
-                 xlab = "target's incoming-weight share from the knockout",
+                 xlab = "incoming-weight share from the knockout",
                  ylab = "targets called significant",
                  main = "B  Significant targets carry minute shares")
-  graphics::mtext(sprintf("outdegree <= 197: all %d targets significant (shares <= %.3f)",
-                          nrow(low), max(low$share)),
-                  side = 3, line = 0.1, cex = BIB_CEX_TXT, col = "grey25")
+  ## One short line: the earlier single line was wider than the panel and was cut
+  ## by the device edge, and a stacked version reached into the panel title. The
+  ## outdegree range and the largest share are given in the figure legend.
+  graphics::mtext(sprintf("all %d targets significant", nrow(low)),
+                  side = 3, line = 0.25, cex = BIB_CEX_TXT, col = "grey25")
   graphics::abline(v = median(low$share), lty = 2, col = "grey35")
   graphics::text(median(low$share), max(h$counts) * 0.9,
                  sprintf("median %.3f", median(low$share)),
@@ -149,5 +153,5 @@ draw <- function() {
   graphics::par(op)
 }
 
-bib_render(draw, "results/figures/FigS3_weight_share", width_mm = BIB_FULL_MM, height_mm = 78)
+bib_render(draw, "results/figures/FigS3_weight_share", width_mm = BIB_FULL_MM, height_mm = 82)
 cat("\nwritten: results/tables/Table_S14*.csv, results/figures/FigS3_weight_share.{pdf,png,tiff}\n")

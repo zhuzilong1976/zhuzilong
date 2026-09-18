@@ -13,7 +13,13 @@ sub <- cmp[cmp$threshold == "nonzero", ]
 colors <- c("#c0392b", "#e67e22", "#2980b9", "#16a085")
 
 draw <- function() {
-  op <- bib_par(mfrow = c(1, 3), mar = c(5.0, 4.8, 3.0, 0.8), oma = c(0, 0, 3.2, 0))
+  ## No outer banner: the two-line take-home message that used to run across the
+  ## top of the artwork is now a one-line annotation inside panel C, which is
+  ## where the run-to-run numbers are. mar top 3.6 keeps panel A's
+  ## "n_propagation = 3" note clear of the plot box.
+  ## mar right 2.2: panel C's title ("C  Run-to-run variation") is centred on the
+  ## panel and its last characters reached the right edge of the device at 0.8.
+  op <- bib_par(mfrow = c(1, 3), mar = c(5.0, 4.8, 3.6, 2.2), oma = c(0, 0, 0, 0))
 
   ## A: affected gene counts. The y-axis title matches panels B and C, and the
   ## panel title stays short: at 10.35 pt the longer "A  KO affects many genes"
@@ -62,19 +68,16 @@ draw <- function() {
   ## Values on the bars: the 43-fold SPI1 contrast (28 vs 1,205) is the point of
   ## this panel, so it should not have to be read off the axis.
   graphics::text(b3, m + max(m) * 0.015, labels = m, cex = BIB_CEX_TXT)
-  ## The 43-fold statement is kept inside the artwork because it does not appear
-  ## in the manuscript text; the manuscript legend carries the rest of the panel
-  ## text. The range is 28 to 1,205 and the divisor of 43 is exactly
-  ## round(1205 / 28), so the claim covers both genes named here.
-  graphics::mtext("Two independent CellOracle runs on the same data differ up to 43-fold",
-                  side = 3, outer = TRUE, line = 2, cex = BIB_CEX_TXT, font = 2,
-                  family = BIB_FONT)
-  graphics::mtext("(SPI1: 28 vs 1,205; IRF8: 1,053 vs 887); the scTenifoldKnk affected set is deterministic",
-                  side = 3, outer = TRUE, line = 1, cex = BIB_CEX_TXT, font = 2,
-                  family = BIB_FONT)
+  ## The 43-fold contrast does not appear in the manuscript text, so it stays in
+  ## the artwork, as a single line above panel C. The range is 28 to 1,205 and 43
+  ## is exactly round(1205 / 28).
+  ## One short line, 25 characters: a longer version overran the 1.98 in panel on
+  ## both sides, and a two-line version reached up into the panel title.
+  graphics::mtext("SPI1 28 vs 1,205 (43-fold)",
+                  side = 3, line = 0.3, cex = BIB_CEX_TXT, col = "grey25")
   graphics::par(op)
 }
 
 bib_render(draw, file.path(fig_dir, "Fig_tool_comparison"),
-           width_mm = BIB_FULL_MM, height_mm = 100)
+           width_mm = BIB_FULL_MM, height_mm = 90)
 cat("Saved results/figures/Fig_tool_comparison.{pdf,tiff,png}\n")

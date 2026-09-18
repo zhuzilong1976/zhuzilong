@@ -18,7 +18,7 @@ draw <- function() {
   ## mar bottom 6.6: panel B's two-line rotated dataset labels ran past the
   ## bottom edge at 5.4 (ink on the last raster row). mar right 2.0 also keeps
   ## panel B's long x-axis title inside the device.
-  op <- bib_par(mfrow = c(1, 2), mar = c(6.6, 5.0, 3.0, 2.0), oma = c(0, 0, 0, 0))
+  op <- bib_par(mfrow = c(1, 2), mar = c(8.6, 5.0, 3.0, 2.0), oma = c(0, 0, 0, 0))
 
   ## The y axis runs to 1,200 although the highest point is 377: the extra
   ## decade is headroom for labels. Nkx2-1, Dmd and Malat1 lie within 0.06 of a
@@ -60,10 +60,17 @@ draw <- function() {
   our_ok <- our$all_inside %in% c(TRUE, "TRUE", "true")
   net_tab <- tapply(our_ok, our$network, mean)
   n_net <- tapply(our_ok, our$network, length)
+  ## tapply sorts the names alphabetically, which would put the two split-halves
+  ## before the two networks they are split from. Keep the order used in the
+  ## manuscript: Control, MS, split-half A, split-half B.
+  net_order <- c("MS microglia, control net", "MS microglia, lesion net",
+                 "Control split-half A", "Control split-half B")
+  net_tab <- net_tab[net_order]; n_net <- n_net[net_order]
   ## Network size joins the axis label, which already wraps to two lines; the
   ## datasets behind each bar stay in the manuscript legend and Table S3.
-  labs <- c(sprintf("%s\n(n=%d)", bib_short(names(net_tab)), n_net),
-            sprintf("%s\n(n=%s)", rep$ko_genes, gsub("[+]", "+\n", rep$network_genes)))
+  ## One short line per label: fourteen two-line rotated labels in a 74 mm panel
+  ## overlap each other. Network sizes stay in the figure legend and Table S3.
+  labs <- c(bib_short(names(net_tab)), rep$ko_genes)
   pct <- c(100 * as.numeric(net_tab), rep$pct_inside)
   ## grp has to have one entry per bar. Spelled with nrow(our) it had 3,195
   ## entries, so the first 14 were all "this study" and every bar came out grey,

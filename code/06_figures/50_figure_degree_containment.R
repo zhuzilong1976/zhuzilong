@@ -76,7 +76,7 @@ draw <- function() {
   ## labels under the axis and a row of rotated value labels above the bars, and
   ## at mar = 4.6 / 3.0 both ran past the device edge and were cut (measured as
   ## ink on the last raster row of the exported PNG).
-  op <- bib_par(mfrow = c(1, 3), mar = c(6.0, 4.4, 3.4, 0.8), oma = c(0, 0, 0, 0))
+  op <- bib_par(mfrow = c(1, 3), mar = c(8.6, 4.4, 3.4, 0.8), oma = c(0, 0, 0, 0))
   xlab_ko <- "Outdegree of KO gene"
 
   ## Panel A
@@ -127,7 +127,10 @@ draw <- function() {
   ## network name on the x axis, where the label already wraps to two lines.
   comp <- do.call(rbind, lapply(res, function(r) c(sum(r$all_inside), nrow(r))))
   compl <- 100 * comp[, 1] / comp[, 2]
-  net_lab <- sprintf("%s\n(n=%d)", bib_short(names(res)), comp[, 2])
+  ## One short line per bar: a two-line label rotated by 90 degrees collided with
+  ## its neighbours, and a one-line label carrying the knockout count needs more
+  ## height than the axis has. The counts stay in the caption.
+  net_lab <- bib_short(names(res))
   b <- graphics::barplot(compl, ylim = c(0, 112),
                          col = cols,
                          names.arg = net_lab,

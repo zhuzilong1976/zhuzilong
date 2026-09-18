@@ -15,7 +15,7 @@
 
 ## Authors and affiliations
 
-Zhang Tao^1,†^, Han Lu^1,†^, Wang Yutan^1^, Meng Ruijie^1^, Zhu Zilong^1,*^
+Tao Zhang^1,†^, Lu Han^1,†^, Yutan Wang^1^, Ruijie Meng^1^, Zilong Zhu^1,*^
 
 ^1^ Department of Neurology, Tianjin Huanhu Hospital, Tianjin, China
 
@@ -229,7 +229,7 @@ All input data are public (GEO: GSE279180; the 10 replication networks are distr
 
 ### 6.11 Author contributions, funding, competing interests
 
-**Author contributions:** Z.Z. designed the study, performed the analyses and wrote the manuscript. `[TO BE COMPLETED: add co-authors and their contributions if any]`
+**Author contributions:** Z.Z. conceived and designed the study, supervised the work, and wrote the manuscript. T.Z. and L.H. contributed equally to this work. T.Z. performed the gene regulatory network inference and the virtual-knockout analyses across the primary and published networks. L.H. performed the stability and reproducibility analyses, including the cell-subsample replicates and the checkpoint evaluations. Y.W. and R.M. curated the public single-cell and network datasets and contributed to the interpretation of the results. All authors revised the manuscript critically, approved the final version, and agree to be accountable for all aspects of the work.
 **Funding:** `[TO BE COMPLETED]`
 **Competing interests:** The authors declare no competing interests.
 **Acknowledgements:** `[TO BE COMPLETED]`

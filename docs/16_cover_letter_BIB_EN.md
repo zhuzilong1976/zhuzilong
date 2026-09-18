@@ -21,7 +21,7 @@ Dear Editors of *Briefings in Bioinformatics*,
 
 Sincerely,
 
-Zhu Zilong
+Zilong Zhu
 ORCID: 0000-0002-6955-0903
 Department of Neurology, Tianjin Huanhu Hospital, Tianjin, China
 zhuzilong1976@gmail.com

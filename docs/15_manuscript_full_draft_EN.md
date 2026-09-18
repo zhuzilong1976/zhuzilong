@@ -230,9 +230,8 @@ All input data are public (GEO: GSE279180; the 10 replication networks are distr
 ### 6.11 Author contributions, funding, competing interests
 
 **Author contributions:** Z.Z. conceived and designed the study, supervised the work, and wrote the manuscript. T.Z. and L.H. contributed equally to this work. T.Z. performed the gene regulatory network inference and the virtual-knockout analyses across the primary and published networks. L.H. performed the stability and reproducibility analyses, including the cell-subsample replicates and the checkpoint evaluations. Y.W. and R.M. curated the public single-cell and network datasets and contributed to the interpretation of the results. All authors revised the manuscript critically, approved the final version, and agree to be accountable for all aspects of the work.
-**Funding:** `[TO BE COMPLETED]`
+**Funding:** This work received no specific grant from any funding agency in the public, commercial or not-for-profit sectors.
 **Competing interests:** The authors declare no competing interests.
-**Acknowledgements:** `[TO BE COMPLETED]`
 
 ---
 

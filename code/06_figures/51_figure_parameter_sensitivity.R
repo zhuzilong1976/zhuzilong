@@ -55,7 +55,10 @@ draw <- function() {
   ## Horizontal: at 170 mm page width each of the three panels is about 55 mm
   ## wide, so four labels of five characters sit comfortably side by side. The
   ## rotated version this replaces crowded the panel title.
-  graphics::text(b, summ$compliance + 3.5, sprintf("%.1f%%", summ$compliance),
+  ## Compact values: each of the four bar slots in a ~40 mm panel is 10 mm wide,
+  ## so "99.0%" plus a percent sign would touch its neighbour. Units are on the
+  ## axis titles.
+  graphics::text(b, summ$compliance + 3.5, sprintf("%.1f", summ$compliance),
                  cex = BIB_CEX_TXT, adj = c(0.5, 0))
 
   ## B: network density & median outdegree
@@ -63,8 +66,9 @@ draw <- function() {
                     ylim = c(0, 118), las = 2, cex.names = BIB_CEX_AXIS,
                     ylab = "Network density (%)",
                     main = "B  Density changes")
-  graphics::text(b, summ$density + 4,
-                 sprintf("%.1f%%\n(od=%d)", summ$density, round(summ$median_od)),
+  ## Density only. The two-line form with the median outdegree was 12.6 mm wide
+  ## against a 10 mm slot; the outdegree is in Table S2 and in the Results text.
+  graphics::text(b, summ$density + 4, sprintf("%.1f", summ$density),
                  cex = BIB_CEX_TXT, adj = c(0.5, 0))
 
   ## C: number of outdegree-0 genes = the violations

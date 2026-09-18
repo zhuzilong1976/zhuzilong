@@ -131,14 +131,22 @@ draw <- function() {
   ## its neighbours, and a one-line label carrying the knockout count needs more
   ## height than the axis has. The counts stay in the caption.
   net_lab <- bib_short(names(res))
-  b <- graphics::barplot(compl, ylim = c(0, 112),
+  ## ylim top 103, not 112: the bars sit at ~100%, so a 12-unit headroom left the
+  ## value labels in the margin about 7 mm away from the bar tops. At 103 the bars
+  ## reach the top of the panel and the labels stay ~2.7 mm above them, which is
+  ## proportional to the 8.1 pt text.
+  b <- graphics::barplot(compl, ylim = c(0, 103),
                          col = cols,
                          names.arg = net_lab,
                          border = NA, las = 2, cex.names = BIB_CEX_AXIS,
                          ylab = "DR genes contained (%)",
                          main = "C  Containment holds")
   graphics::abline(h = 100, lty = 2, col = "grey35")
-  bib_bar_labels_rot(b, sprintf("%.1f%%", compl), line = 0.3)
+  ## Values without the percent sign: at 8.1 pt each bar slot in this panel is
+  ## only ~10 mm wide, and "99.9%" (7.9 mm) left no gap to its neighbour, which is
+  ## why "99.9%" and "100.0%" ran together. The axis title carries the unit.
+  c_lab <- ifelse(abs(compl - 100) < 0.05, "100", sprintf("%.1f", compl))
+  bib_bar_labels_rot(b, c_lab, line = 0.25)
   graphics::par(op)
 }
 

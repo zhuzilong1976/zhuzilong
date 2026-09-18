@@ -135,21 +135,35 @@ draw <- function() {
                    pch = 21, pt.bg = c(BIB_TINT$blue, BIB_TINT$red),
                    col = "black", bty = "n", cex = BIB_CEX_LEG, pt.cex = 1.2)
 
-  h <- graphics::hist(low$share, breaks = 30, plot = FALSE)
+  ## The axis is trimmed to +/-0.006: 332 of the 334 shares lie within +/-0.004 and
+  ## the other two are exactly +/-0.0625. Left untrimmed, those two stretch the axis
+  ## by a factor of ten and squeeze the whole distribution into a single bin; the
+  ## previous version also started the axis at 0, which silently dropped the
+  ## negative half of the histogram. The two off-scale values are labelled in the
+  ## panel and the counts are given in the figure legend.
+  xmax <- 0.006
+  in_range <- low$share[abs(low$share) <= xmax]
+  n_off <- sum(abs(low$share) > xmax)
+  h <- graphics::hist(in_range, breaks = seq(-xmax, xmax, length.out = 25),
+                      plot = FALSE)
   graphics::plot(h, col = BIB_TINT$blue, border = "white", las = 1,
-                 xlim = c(0, max(0.07, max(low$share))),
+                 ylim = c(0, max(h$counts) * 1.15),
                  xlab = "incoming-weight share from the knockout",
                  ylab = "targets called significant",
                  main = "B  Significant targets carry minute shares")
-  ## One short line: the earlier single line was wider than the panel and was cut
-  ## by the device edge, and a stacked version reached into the panel title. The
-  ## outdegree range and the largest share are given in the figure legend.
+  ## One short line: a longer version was wider than the panel and was cut by the
+  ## device edge, and a stacked version reached into the panel title.
   graphics::mtext(sprintf("all %d targets significant", nrow(low)),
                   side = 3, line = 0.25, cex = BIB_CEX_TXT, col = "grey25")
   graphics::abline(v = median(low$share), lty = 2, col = "grey35")
-  graphics::text(median(low$share), max(h$counts) * 0.9,
+  graphics::text(median(low$share) + 0.0008, max(h$counts) * 0.92,
                  sprintf("median %.3f", median(low$share)),
-                 pos = 4, cex = BIB_CEX_TXT, col = "grey25")
+                 adj = c(0, 1), cex = BIB_CEX_TXT, col = "grey25")
+  if (n_off > 0) {
+    graphics::text(xmax * 0.97, max(h$counts) * 1.08,
+                   sprintf("%d of %d at \u00b10.063\n(off scale)", n_off, nrow(low)),
+                   adj = c(1, 1), cex = BIB_CEX_TXT, col = "grey25")
+  }
   graphics::par(op)
 }
 

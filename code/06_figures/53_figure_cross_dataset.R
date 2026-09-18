@@ -80,11 +80,16 @@ draw <- function() {
   ## including the 10 published datasets that are meant to be red.
   grp <- c(rep("this study", length(net_tab)), rep("published", nrow(rep)))
   cols <- ifelse(grp == "this study", "#7f8c8d", "#e74c3c")
-  graphics::barplot(pct, names.arg = labs, col = cols, border = NA,
-                    ylim = c(0, 112), las = 2, cex.names = BIB_CEX_AXIS,
-                    ylab = "DR genes inside {KO} U targets (%)",
-                    main = "B  Containment: 100% in every dataset")
+  b_rep <- graphics::barplot(pct, names.arg = rep("", length(labs)), col = cols,
+                             border = NA, ylim = c(0, 112), las = 1,
+                             ylab = "DR genes inside {KO} U targets (%)",
+                             main = "B  Containment: 100% in every dataset")
   graphics::abline(h = 100, lty = 2, col = "grey40")
+  ## Dataset labels read from the top down, as in Figures 1C and S1, instead of
+  ## R's bottom-up default.
+  usr <- graphics::par("usr")
+  graphics::text(b_rep, usr[3] - 0.015 * (usr[4] - usr[3]), labels = labs,
+                 srt = -90, adj = c(0, 0.5), cex = BIB_CEX_AXIS, xpd = NA)
   ## The bars do not repeat 14 identical values above the line: the exact rate
   ## is in the panel title, the figure legend and Table S3.
   graphics::par(op)

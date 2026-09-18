@@ -137,11 +137,17 @@ draw <- function() {
   ## reads as attached to them without touching.
   b <- graphics::barplot(compl, ylim = c(0, 101.5),
                          col = cols,
-                         names.arg = net_lab,
-                         border = NA, las = 2, cex.names = BIB_CEX_AXIS,
+                         names.arg = rep("", length(net_lab)),
+                         border = NA, las = 1,
                          ylab = "DR genes contained (%)",
                          main = "C  Containment holds")
   graphics::abline(h = 100, lty = 2, col = "grey35")
+  ## The network names read from the top down and hang from just below the axis,
+  ## matching the parameter labels of Figure S1. R's las = 2 draws them the other
+  ## way up, so they are placed by hand.
+  usr <- graphics::par("usr")
+  graphics::text(b, usr[3] - 0.015 * (usr[4] - usr[3]), labels = net_lab,
+                 srt = -90, adj = c(0, 0.5), cex = BIB_CEX_AXIS, xpd = NA)
   ## Values without the percent sign: at 8.1 pt each bar slot in this panel is
   ## only ~10 mm wide, and "99.9%" (7.9 mm) left no gap to its neighbour, which is
   ## why "99.9%" and "100.0%" ran together. The axis title carries the unit.

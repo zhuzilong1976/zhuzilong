@@ -126,22 +126,34 @@ draw <- function() {
                            nrow(c3), nrow(c3)), cex = BIB_CEX_TXT, font = 2)
 
     ## D  C4 paired comparison ----------------------------------------------
-    graphics::barplot(c4$n_fdr05, names.arg = paste0("pair ", c4$replicate),
-                      col = "grey45", border = NA, ylim = c(0, 4.2), las = 2,
-                      cex.names = BIB_CEX_AXIS, ylab = "genes at FDR < 0.05",
-                      yaxt = "n",
-                      main = "D  C4 paired comparison: fail")
+    ## space = 0.1 instead of R's 0.2 makes each bar about 20% wider, and the left
+    ## margin drops from 6.2 to 4.6 lines: the y-axis title plus three tick labels
+    ## need about 14 mm, not the 20 mm that the two-line title of panel C forced on
+    ## the whole row.
+    graphics::par(mar = c(5.4, 4.6, 3.0, 1.6))
+    b4 <- graphics::barplot(c4$n_fdr05, names.arg = paste0("pair ", c4$replicate),
+                            col = "grey45", border = NA, ylim = c(0, 4.2), las = 2,
+                            space = 0.1,
+                            cex.names = BIB_CEX_AXIS, ylab = "genes at FDR < 0.05",
+                            yaxt = "n",
+                            main = "D  C4 paired comparison: fail")
     graphics::axis(2, at = 0:3, las = 1)
     graphics::abline(h = 0, lty = 1, col = "grey20")
-    ## Horizontal, alternating two heights: at 45 degrees the labels of the
-    ## adjacent pairs (CD74/ADGRG3, CD74/ADGRG3) overlapped each other.
-    for (i in seq_len(nrow(c4))) {
-      graphics::text(i * 1.2 - 0.6, c4$n_fdr05[i] + 0.1 + (i %% 2) * 0.32,
-                     ifelse(c4$n_fdr05[i] > 0, c4$top_gene[i], ""),
-                     cex = BIB_CEX_TXT)
+    ## Each gene name sits exactly on the midpoint barplot() returns. The loop this
+    ## replaces used i * 1.2 - 0.6, which is 0.1 bar slots to the left of the true
+    ## midpoint, so every label sat between two bars. The labels also step up by
+    ## 0.30 each, because two names of five or six characters cannot share a row
+    ## that is only about 6 mm wide; xpd = NA keeps the last one visible.
+    lab_rows <- which(c4$n_fdr05 > 0)
+    for (k in seq_along(lab_rows)) {
+      i <- lab_rows[k]
+      graphics::text(b4[i], c4$n_fdr05[i] + 0.15 + (k - 1) * 0.30, c4$top_gene[i],
+                     cex = BIB_CEX_TXT, xpd = NA)
     }
-    graphics::text(nrow(c4) * 1.2 * 0.5, 3.9,
-                   sprintf("primary analysis: 0 genes\nreplicates: %d / %d pairs with ≥1",
+    ## \u2265 rather than the literal character: this machine's R reads the script
+    ## in the C locale, which turned "≥" into two wrong glyphs.
+    graphics::text(mean(b4), 3.6,
+                   sprintf("primary analysis: 0 genes\nreplicates: %d / %d pairs with \u2265 1",
                            sum(c4$n_fdr05 > 0), nrow(c4)), cex = BIB_CEX_TXT, font = 2)
   } else {
     graphics::plot.new()

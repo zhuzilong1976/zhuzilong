@@ -44,14 +44,27 @@ draw <- function() {
   ax_lab <- as.expression(lapply(strsplit(axis_labels, "\n"), function(l) {
     bquote(lambda == .(sub("lambda=", "", l[1])) * "," ~ q == .(sub("q=", "", l[2])))
   }))
+  ## Parameter labels under the bars. R's las = 2 draws them reading from the
+  ## bottom up; here they are turned through 180 degrees so they read from the top
+  ## down and hang from just below the axis, which the authors find easier to
+  ## follow. They are drawn by hand because las cannot produce that direction.
+  eq_labels <- function(at) {
+    usr <- graphics::par("usr")
+    graphics::text(at, usr[3] - 0.015 * (usr[4] - usr[3]), labels = ax_lab,
+                   srt = -90, adj = c(0, 0.5), cex = BIB_CEX_AXIS, xpd = NA)
+  }
 
   ## A: compliance. All four bars sit near 100%, so the values go into the top
   ## margin where they cannot be clipped.
-  b <- graphics::barplot(summ$compliance, names.arg = ax_lab, col = summ$col, border = NA,
-                         ylim = c(0, 112), las = 2, cex.names = BIB_CEX_AXIS,
+  ## names.arg is a vector of empty strings: the labels are drawn by eq_labels()
+  ## below, and cex.names = 0 is rejected by axis().
+  blank <- rep("", length(ax_lab))
+  b <- graphics::barplot(summ$compliance, names.arg = blank, col = summ$col, border = NA,
+                         ylim = c(0, 112), las = 1,
                          ylab = "Containment compliance (%)",
                          main = "A  Containment holds")
   graphics::abline(h = 100, lty = 2, col = "grey35")
+  eq_labels(b)
   ## Horizontal: at 170 mm page width each of the three panels is about 55 mm
   ## wide, so four labels of five characters sit comfortably side by side. The
   ## rotated version this replaces crowded the panel title.
@@ -62,20 +75,22 @@ draw <- function() {
                  cex = BIB_CEX_TXT, adj = c(0.5, 0))
 
   ## B: network density & median outdegree
-  graphics::barplot(summ$density, names.arg = ax_lab, col = summ$col, border = NA,
-                    ylim = c(0, 118), las = 2, cex.names = BIB_CEX_AXIS,
+  graphics::barplot(summ$density, names.arg = blank, col = summ$col, border = NA,
+                    ylim = c(0, 118), las = 1,
                     ylab = "Network density (%)",
                     main = "B  Density changes")
+  eq_labels(b)
   ## Density only. The two-line form with the median outdegree was 12.6 mm wide
   ## against a 10 mm slot; the outdegree is in Table S2 and in the Results text.
   graphics::text(b, summ$density + 4, sprintf("%.1f", summ$density),
                  cex = BIB_CEX_TXT, adj = c(0.5, 0))
 
   ## C: number of outdegree-0 genes = the violations
-  graphics::barplot(summ$n_deg0, names.arg = ax_lab, col = summ$col, border = NA,
-                    ylim = c(0, max(summ$n_deg0) * 1.35), las = 2, cex.names = BIB_CEX_AXIS,
+  graphics::barplot(summ$n_deg0, names.arg = blank, col = summ$col, border = NA,
+                    ylim = c(0, max(summ$n_deg0) * 1.35), las = 1,
                     ylab = "Genes with outdegree 0",
                     main = "C  Outdegree-0 genes")
+  eq_labels(b)
   graphics::text(b, summ$n_deg0 + max(summ$n_deg0) * 0.06,
                  labels = summ$n_deg0, cex = BIB_CEX_TXT, adj = c(0.5, 0))
 

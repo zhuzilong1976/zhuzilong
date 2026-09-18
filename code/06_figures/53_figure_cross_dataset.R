@@ -34,27 +34,30 @@ draw <- function() {
                    col = "#b0b6b8")
   graphics::points(rep$od_total, rep$n_DR, pch = 21, cex = 1.5, lwd = 1.1,
                    bg = "#e74c3c", col = "black")
-  ## Label positions, in the order of rep$ko_genes: Hnf4a+Hnf4g, Nkx2-1, Dmd,
-  ## Malat1, Ahr, Mecp2, Mecp2, Cftr, Akap7, Cftr. Columns are the label's
-  ## x and y in data units; both are given explicitly because no rule fitted
-  ## them, as the note on the y range above explains.
-  ## Labels 1, 5, 8 and 10 are the left cluster (outdegree 17-228) and sit inside
-  ## a two-decade box, where the previous positions put Hnf4a+Hnf4g, Ahr and Cftr
-  ## on top of one another. The five left labels are now spread over distinct
-  ## rows: each pair differs by at least 0.28 log units on y, which is wider than
-  ## one line of text at 8.1 pt.
-  lab_x <- c( 430,  3600, 2000, 2900,  150,  700,  100,   75,    5.5,  5)
-  lab_y <- c( 110,   700,  500,  340,   17,  640,  470,    9,    2.2, 45)
+  ## Label centres, in the order of rep$ko_genes: Hnf4a+Hnf4g, Nkx2-1, Dmd,
+  ## Malat1, Ahr, Mecp2, Mecp2, Cftr, Akap7, Cftr.
+  ##
+  ## At 8.1 pt a label is about 1.0 log unit wide and 0.13 log units tall, so two
+  ## labels collide unless they differ by more than that on at least one axis.
+  ## These ten positions were checked one against another under that rule. They
+  ## replace a set in which Hnf4a+Hnf4g sat on top of the bound-line note and the
+  ## two Mecp2 labels plus Nkx2-1 ran together at the top of the cluster.
+  lab_x <- c( 126, 8912, 4000, 3548,  224, 1100,  330,   56,  4.2, 6.3)
+  lab_y <- c(  96,  263,  700,  105,   40,  230,  140,   16,  2.6,  24)
   graphics::text(lab_x, lab_y, labels = rep$ko_genes, cex = BIB_CEX_TXT)
-  ## Above the bound line at the far left: the line is still below y = 90 where
-  ## the panel starts, and no point is plotted in that corner.
-  graphics::text(1.15, 120, "|DR| <= outdegree + 1", adj = 0, cex = BIB_CEX_TXT,
-                 col = "grey25")
-  graphics::legend("bottomright",
-                   legend = c("this study\n(3,195 knockouts)",
-                              "published\n(10 datasets)"),
-                   pch = c(16, 21), pt.bg = c(NA, "#e74c3c"), col = c("#7f8c8d", "black"),
-                   pt.cex = c(1, 1.3), bty = "o", bg = "white", box.col = "white",
+  ## One legend for the whole panel, in the empty upper-left triangle, one short
+  ## line per entry. The bound line has its own entry, so no note has to sit in
+  ## the plotting region, where the old one ran into the Hnf4a+Hnf4g label. The
+  ## dataset counts stay in the figure legend: spelling them out here made the box
+  ## 77% of the panel wide and it covered the Mecp2 and Dmd labels.
+  graphics::legend("topleft",
+                   legend = c("this study",
+                              "published",
+                              paste0("|DR| ", "\u2264", " outdegree + 1")),
+                   pch = c(16, 21, NA), lty = c(0, 0, 2),
+                   pt.bg = c(NA, "#e74c3c", NA), col = c("#7f8c8d", "black", "grey45"),
+                   pt.cex = c(1, 1.3, NA), lwd = c(1, 1, 1.6),
+                   bty = "o", bg = "white", box.col = "white",
                    cex = BIB_CEX_LEG)
 
   our_ok <- our$all_inside %in% c(TRUE, "TRUE", "true")
